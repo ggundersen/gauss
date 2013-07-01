@@ -5,7 +5,7 @@ api_version: 1
 threadsafe: yes
 
 env_variables:
-  TEMPLATE_PATH: '/views'
+  TEMPLATE_PATH: '/templates'
 
 handlers:
 - url: /favicon\.ico

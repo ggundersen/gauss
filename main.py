@@ -15,50 +15,22 @@
 # limitations under the License.
 #
 
-import importlib
 import jinja2
 import os
-import time
 import webapp2
 
-JINJA_ENV = jinja2.Environment(loader=jinja2.FileSystemLoader('views'))
+from handlers import *
 
-class SplashPage(webapp2.RequestHandler):
+template_path = os.path.normpath(os.path.dirname(__file__) + os.environ["TEMPLATE_PATH"])
+JINJA_ENV = jinja2.Environment(loader=jinja2.FileSystemLoader(template_path))
+
+class MainHandler(webapp2.RequestHandler):
 	def get(self):
 		template = JINJA_ENV.get_template('index.html')
 		self.response.write(template.render())
 
-class ProblemsPage(webapp2.RequestHandler):
-	def get(self):
-		template = JINJA_ENV.get_template('problems.html')
-		self.response.write(template.render())
-
-class ProblemHandler(webapp2.RequestHandler):
-	def get(self, problem_id):
-		result_array = self.get_data(problem_id)
-		template_values = {
-			'problem_id' : problem_id,
-			'result' : result_array[0],
-			'time' : result_array[1]
-		}
-		template = JINJA_ENV.get_template('/templates/problem.tpl.html')
-		self.response.write(template.render(template_values))
-
-	def get_data(self, problem_id):
-		# get function
-		mod = importlib.import_module('problems.' + problem_id)
-		func = getattr(mod, problem_id)
-
-		# run and time function
-		s = time.time()
-		result = func()
-		t = s - time.time()
-
-		# return data
-		return [result, s]
-
 app = webapp2.WSGIApplication([
-    (r'/', SplashPage),
-    (r'/problems', ProblemsPage),
-    (r'/problems/(.*)', ProblemHandler)
+    (r'/', MainHandler),
+    (r'/problems', problemsHandler.ProblemsHandler),
+    (r'/problems/(.*)', problemHandler.ProblemHandler)
 ], debug=True)
