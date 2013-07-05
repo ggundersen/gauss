@@ -32,5 +32,6 @@ class MainHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     (r'/', MainHandler),
     (r'/problems', problemsHandler.ProblemsHandler),
-    (r'/problems/(.*)', problemHandler.ProblemHandler)
+    (r'/problems/(.*)', baseHandler.BaseHandler),
+    (r'/api/q=(.*)', apiHandler.ApiHandler)
 ], debug=True)
