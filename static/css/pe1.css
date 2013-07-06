@@ -1,0 +1,21 @@
+#content {
+	width: 1000px;
+}
+div.cell {
+	float: left;
+	font: 700 8px Arial, sans-serif;
+	height: 15px;
+	margin-right: 1px;
+	margin-bottom: 1px;
+	text-align: center;
+	width: 15px;
+}
+div.cell.both {
+	background: purple;
+}
+div.cell.three {
+	background: blue;
+}
+div.cell.five {
+	background: red;
+}
