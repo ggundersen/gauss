@@ -6,7 +6,7 @@ def pe2():
 def magic(divisor):
 	fgen = g.gen_fibonacci()
 	result = []
-	for i in range(300):
+	for i in range(100):
 		f = fgen.next()
 		if f % int(divisor) == 0:
 			b = list(bin(f)[2:])

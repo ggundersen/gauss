@@ -1,0 +1,30 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+
+body {
+	border-top: 10px solid #0049f1;
+	font-family: Open Sans, arial, sans-serif;
+	font-size: 13px;
+	margin: 0;
+	padding: 0;
+}
+#wrapper {
+	margin: 0 auto;
+	width: 600px;
+}
+#wrapper h3 {
+	color: #0049f1;
+	font-size: 20px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+#wrapper a {
+	border-bottom: 1px solid #aaa;
+	color: #000;
+	text-decoration: none;
+}
+#wrapper a:hover {
+	border-bottom: 1px solid #000;
+}
+#wrapper a.welcome {
+	font-weight: 600;
+}
