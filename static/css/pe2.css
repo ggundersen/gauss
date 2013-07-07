@@ -1,0 +1,19 @@
+table {
+	border: none;
+	border-collapse: collapse;
+}
+tr,
+td {
+	padding: 0;
+}
+.cell {
+	background: white;
+	height: 2px;
+	width: 2px;
+}
+.cell0 {
+	background: black;
+}
+div.cell.even {
+	background: blue;
+}

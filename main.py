@@ -33,5 +33,5 @@ app = webapp2.WSGIApplication([
     (r'/', MainHandler),
     (r'/problems', problemsHandler.ProblemsHandler),
     (r'/problems/(.*)', baseHandler.BaseHandler),
-    (r'/api/q=(.*)', apiHandler.ApiHandler)
+    (r'/api/q=(.*)&n=(.*)', apiHandler.ApiHandler)
 ], debug=True)

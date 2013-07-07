@@ -1,13 +1,14 @@
-def fibGet(n):
-    if n <= 1:
-        return 1
-    else:
-        return fibGet(n-1) + fibGet(n-2)
+import gmath as g
 
-def fibAdd(func, maxi):
-    ans = 0
-    for i in range(maxi):
-        if func(i) % 2 == 0:
-            ans += func(i)
-    return ans
-        
+def pe2():
+	return 'fake answer'
+
+def magic(divisor):
+	fgen = g.gen_fibonacci()
+	result = []
+	for i in range(200):
+		f = fgen.next()
+		if f % int(divisor) == 0:
+			b = list(bin(f)[2:])
+			result.append(b)
+	return result
