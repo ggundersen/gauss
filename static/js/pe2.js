@@ -1,7 +1,8 @@
 (function(G) {
 
 	G.render = function(json_data) {
-		var table = d3.select('body').append('table');
+		$('#canvas').empty(); // clean slate every rendering
+		var table = d3.select('#canvas').append('table');
 		var rows = table.selectAll('tr').data(json_data).enter().append('tr');
 		rows.selectAll('td')
 			.data(
@@ -23,10 +24,18 @@
 		});
 	};
 
+	G.validate_input = function(input) {
+		return input % 1 === 0;
+	};
+
 	$(function() {
 		$('button.run').on('click', function() {
-			var divisor = $('#divisor').val();
-			G.make_query(divisor).done(function(response) {
+			var input = $('input#divisor').val();
+			if (G.validate_input(input) === false || input === '') {
+				alert('Please enter an integer');
+				return;
+			}
+			G.make_query(input).done(function(response) {
 				G.render(response);
 			});
 		});

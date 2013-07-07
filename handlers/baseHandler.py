@@ -14,6 +14,7 @@ class BaseHandler(webapp2.RequestHandler):
 		data = self.get_data(problem_id)
 		template_values = {
 			'problem_id' : problem_id,
+			'problem_num' : problem_id[2:],
 			'problem_title' : 'Problem ' + problem_id[2:],
 			'answer' : data[0],
 			'runtime' : data[1],

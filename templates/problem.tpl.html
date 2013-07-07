@@ -8,12 +8,11 @@
 		<link rel='stylesheet' type='text/css' href='/css/{{ css_path }}' />
 	</head>
   <body>
-  	<h3>{{ problem_title }}</h3>
+  	<h3><a href='http://projecteuler.net/problem={{ problem_num }}'>{{ problem_title }}</a></h3>
  		<a href='/problems'>Back</a>
-   	<p>Runtime: {{ runtime }} seconds</p>
-   	<p>Answer: {{ answer }}</p>
+   	<!--<p>Runtime: {{ runtime }} seconds</p>
+   	<p>Answer: {{ answer }}</p>-->
 
-   	<button class='run'>Run</button>
    	<!-- separate <div id='content'></div> for each problem -->
 		{% block content %}{% endblock %}
 
