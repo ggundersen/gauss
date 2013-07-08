@@ -1,6 +1,6 @@
 (function(G) {
 
-	G.render = function(json_data) {
+	/*G.render = function(json_data) {
 		$('#canvas').empty(); // clean slate every rendering
 		var table = d3.select('#canvas').append('table');
 		var rows = table.selectAll('tr').data(json_data).enter().append('tr');
@@ -15,7 +15,7 @@
 				function(d) {
 					return 'cell cell' + d;
 			});
-	};
+	};*/
 
 	G.make_query = function(divisor) {
 		return $.ajax({
@@ -36,7 +36,8 @@
 				return;
 			}
 			G.make_query(input).done(function(response) {
-				G.render(response);
+				//G.render(response);
+				$('#canvas').append(response);
 			});
 		});
 	});

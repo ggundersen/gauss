@@ -8,10 +8,10 @@ td {
 }
 .cell {
 	background: white;
-	height: 2px;
-	width: 2px;
+	height: 1px;
+	width: 1px;
 }
-.cell0 {
+.black {
 	background: black;
 }
 div.cell.even {
