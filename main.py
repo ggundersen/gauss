@@ -24,14 +24,14 @@ from handlers import *
 template_path = os.path.normpath(os.path.dirname(__file__) + os.environ["TEMPLATE_PATH"])
 JINJA_ENV = jinja2.Environment(loader=jinja2.FileSystemLoader(template_path))
 
-class MainHandler(webapp2.RequestHandler):
+class MainPage(webapp2.RequestHandler):
 	def get(self):
 		template = JINJA_ENV.get_template('index.html')
 		self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
-    (r'/', MainHandler),
-    (r'/problems', problemsHandler.ProblemsHandler),
+    (r'/', MainPage),
+    (r'/problems', problemsPage.ProblemsPage),
     (r'/problems/(.*)', baseHandler.BaseHandler),
-    (r'/api/q=(.*)&n=(.*)', apiHandler.ApiHandler)
+    (r'/api/q=(.*)&n=(.*)', problemHandler.ProblemHandler)
 ], debug=True)
