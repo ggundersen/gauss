@@ -16,7 +16,9 @@ var GAUSS = (function() {
 
 	function render_answer(json_response) {
 		var objJSON = eval('(function(){return ' + json_response + ';})()');
-		document.getElementById('canvas').innerHTML = '<p class="runtime">Runtime: ' + objJSON.runtime + ' seconds</p>';
+		document.getElementById('canvas').innerHTML = '' +
+			'<p class"answer">Answer: ' + objJSON.answer + '</p>' + 
+			'<p class="runtime">Runtime: ' + objJSON.runtime + ' seconds</p>';
 	};
 
 	return {

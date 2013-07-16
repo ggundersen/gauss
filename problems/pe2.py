@@ -1,5 +1,4 @@
 import gmath as g
-import time
 
 def main(divisor):
   
