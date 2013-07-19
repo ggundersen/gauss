@@ -16,6 +16,7 @@ var GAUSS = (function() {
 
 	function render_answer(json_response) {
 		var objJSON = eval('(function(){return ' + json_response + ';})()');
+		console.log(objJSON);
 		document.getElementById('canvas').innerHTML = '' +
 			'<p class"answer">Answer: ' + objJSON.answer + '</p>' + 
 			'<p class="runtime">Runtime: ' + objJSON.runtime + ' seconds</p>';
@@ -23,9 +24,7 @@ var GAUSS = (function() {
 
 	return {
 
-		get_input: get_input,
-
-		get_answer: function() {
+		get_answer: function(problem_id) {
 
 			var requestObj = new XMLHttpRequest();
 			var input = get_input();
@@ -38,7 +37,7 @@ var GAUSS = (function() {
 					render_answer(requestObj.responseText); // document.getElementById('canvas').innerHTML = requestObj.responseText;
 				}
 			}
-			requestObj.open('GET', '/api/q=pe2&n=' + input, true);
+			requestObj.open('GET', '/api/q=pe5&n=' + input, true);
 			requestObj.send();
 		}
 

@@ -1,1 +1,1 @@
-__all__ = ['gmath', 'pe1', 'pe2']
+__all__ = ['gmath', 'pe1', 'pe2', 'pe5']

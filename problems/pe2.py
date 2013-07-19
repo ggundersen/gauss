@@ -11,4 +11,4 @@ def main(divisor):
     if fib % div == 0:
       ans += fib
     fib = gen.next()
-  return divisor
+  return ans
