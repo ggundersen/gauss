@@ -5,16 +5,28 @@
     <link href='/css/main.css' rel='stylesheet' type='text/css'>
 	</head>
   <body>
-    <div id='wrapper'>
-    	<h3>Gauss</h3>
-    	<p>
-    		Gauss is a web application for running, analyzing, and recording <a href='http://projecteuler.net/'>Project Euler</a> algorithms. All calculations are performed at run-time.
-    	</p>
-    	<p>
-    		Gauss is being developed by <a href='http://www.gregorygundersen.com'>Gregory Gundersen</a> using the Google App Engine platform. The application uses the webapp2 framework, Python 2.7, and jinja2.
-    	<p>
-    		<a href='/problems' class='welcome'>Welcome</a>
-    	</p>
-    </div>
+    <h3>Gauss</h3>
+    <h4>Intro</h4>
+    <p>
+    	Gauss is a web application for running, analyzing, and documenting <a href='http://projecteuler.net/'>Project Euler</a> algorithms. All calculations are performed at run-time.
+    </p>
+    <h4>The problems</h4>
+        <p>
+            <a href='/problems'>Enter</a>
+        </p>
+    </p>
+    <h4>An example</h4>
+    <p>
+        The below API call
+        <span class='code'>http://project-gauss.appspot.com/api/q=pe1&n=1</span>
+        will return the following data
+        <span class='code'>{'answer': 233168, 'runtime': 0.01}</span>
+    </p>
+    <h4>Credits</h4>
+    <p>
+    	Gauss is being developed on the Google App Engine platform. The application uses the webapp2 framework, Python 2.7, and jinja2.
+        <br>
+        <br>2013-07-20 : <a href='http://www.gregorygundersen.com'>gwg</a> 
+    </p>
   </body>
 </html>
