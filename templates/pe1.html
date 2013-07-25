@@ -4,14 +4,18 @@
 	<div id='content'>
 		<h4>Problem statement</h4>
 		<p>
-			If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+			<span class='code block'>
+				If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+				<br><br>Find the sum of all the multiples of 3 or 5 below 1000.
+			</span>
 		</p>
+		<h4>Analysis</h4>
 		<p>
-			Find the sum of all the multiples of 3 or 5 below 1000.
+			The solution has <span class='code'>O(n)</span> complexity. The limit, 'below 1000', is what impacts runtime. If it increases twofold or tenfold, so does runtime.
 		</p>
 		<h4>Input</h4>
 		<p>
-			Input the maximum.
+			Input the limit. You should note that runtime increases linearly with input.
 		</p>
 		<input id='user_input'></input>
 		<button id='submit_button'>Run</button>

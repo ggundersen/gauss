@@ -8,25 +8,36 @@
     <h3>Gauss</h3>
     <h4>Intro</h4>
     <p>
-    	Gauss is a web application for running, analyzing, and documenting <a href='http://projecteuler.net/'>Project Euler</a> algorithms. All calculations are performed at run-time.
+    	Gauss is a web application for running, analyzing, and documenting <a href='http://projecteuler.net/'>Project Euler</a> algorithms. All calculations are performed at runtime.
     </p>
     <h4>The problems</h4>
-        <p>
-            <a href='/problems'>Enter</a>
-        </p>
-    </p>
-    <h4>An example</h4>
     <p>
-        The below API call
-        <span class='code'>http://project-gauss.appspot.com/api/q=pe1&n=1</span>
+        The primary goal of Gauss is to showcase the significant variables that effect the efficiency of various algorithms. In other words, Gauss should help us internalize the concepts of <a href='https://en.wikipedia.org/wiki/Time_complexity'>time complexity</a>.
+    <p>
+    </p>
+        Get started <a href='/problems'>here</a>.
+    </p>
+    </p>
+    <h4>The API</h4>
+    <p>
+        Gauss has a simple API that allows users to run and collect the data themselves. For example, the below API call
+        <span class='code block'>http://project-gauss.appspot.com/api/q=pe1&input=1</span>
         will return the following data
-        <span class='code'>{'answer': 233168, 'runtime': 0.01}</span>
+        <span class='code block'>{<br>
+            <span class='indention'>
+            'problem': 1,<br>
+            'answer': 233168,<br>
+            'input': 1,<br>
+            'runtime': 0.01<br>
+        </span>
+        }</span>
+        When the user input is blank or matches the question's variables exactly, the answer is not returned. This is in accordance with Project Euler's honor code.
     </p>
     <h4>Credits</h4>
-    <p>
     	Gauss is being developed on the Google App Engine platform. The application uses the webapp2 framework, Python 2.7, and jinja2.
-        <br>
-        <br>2013-07-20 : <a href='http://www.gregorygundersen.com'>gwg</a> 
+    </p>
+    <p class='top'>
+        2013-07-20 : <a href='http://www.gregorygundersen.com'>gwg</a> 
     </p>
   </body>
 </html>

@@ -26,6 +26,7 @@ var GAUSS = (function() {
 
 		get_answer: function(problem_id) {
 
+			alert(problem_id);
 			var requestObj = new XMLHttpRequest();
 			var input = get_input();
 			
@@ -37,7 +38,7 @@ var GAUSS = (function() {
 					render_answer(requestObj.responseText); // document.getElementById('canvas').innerHTML = requestObj.responseText;
 				}
 			}
-			requestObj.open('GET', '/api/q=pe5&n=' + input, true);
+			requestObj.open('GET', '/api/q=pe' + + '&n=' + input, true);
 			requestObj.send();
 		}
 
