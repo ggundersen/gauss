@@ -1,20 +1,19 @@
-​<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Gauss - {{ problem_title }}</title>
+		<meta name='{{ problem_id }}' />
+		<script src='http://d3js.org/d3.v3.min.js' charset='utf-8'></script>
 		<script src='/js/gauss.js' type='text/javascript'></script>
 		<script src='/js/{{ js_path }}' type='text/javascript'></script>
-		<link rel='stylesheet' type='text/css' href='/css/main.css' />
-		<link rel='stylesheet' type='text/css' href='/css/{{ css_path }}' />
+		<link rel='stylesheet' type='text/css' href='/css/main.css'/>
+		<link rel='stylesheet' type='text/css' href='/css/{{ css_path }}'/>
 	</head>
-  <body>
-  	<h3><a href='http://projecteuler.net/problem={{ problem_num }}'>{{ problem_title }}</a></h3>
- 		<a href='/problems'>Back</a>
-   	<!--<p>Runtime: {{ runtime }} seconds</p>
-   	<p>Answer: {{ answer }}</p>-->
+	<body>
+		<h3><a href='http://projecteuler.net/problem={{ problem_num }}'>{{ problem_title }}</a></h3>
+			<a href='/problems'>Back</a>
+			
+			{% block content %}{% endblock %}
 
-   	<!-- separate <div id='content'></div> for each problem -->
-		{% block content %}{% endblock %}
-
-  </body>
+	</body>
 </html>

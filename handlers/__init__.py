@@ -1,1 +1,1 @@
-__all__ = ['problemHandler', 'baseHandler', 'problemsPage']
+__all__ = ['problemHandler', 'templateHandler', 'problemsPage', 'testHandler', 'refreshHandler']

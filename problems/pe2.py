@@ -1,8 +1,8 @@
 import gmath as g
 
-def main(divisor):
+def main():
   
-  div = int(divisor)
+  div = 100
   ans = 0
   gen = g.gen_fibonacci()
   fib = gen.next()

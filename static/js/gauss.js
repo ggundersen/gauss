@@ -1,9 +1,18 @@
 var GAUSS = (function() {
 
+	function get_problem_id() {
+		var m = document.getElementsByTagName('meta');
+		return m[0].getAttribute('name');
+	};
+
+	/*function get_default_input() {
+		return 1;
+	};
+
 	function get_input() {
-		var input_value = document.getElementById('user_input').value;
-		if (validate_input(input_value)) {
-			return input_value;
+		var input = document.getElementById('user_input').value;
+		if (validate_input(input)) {
+			return input;
 		} else {
 			alert('Please input an integer.');
 			return;
@@ -11,34 +20,31 @@ var GAUSS = (function() {
 	};
 
 	function validate_input(user_input) {
-		return user_input % 1 === 0;
-	};
-
-	function render_answer(json_response) {
-		var objJSON = eval('(function(){return ' + json_response + ';})()');
-		console.log(objJSON);
-		document.getElementById('canvas').innerHTML = '' +
-			'<p class"answer">Answer: ' + objJSON.answer + '</p>' + 
-			'<p class="runtime">Runtime: ' + objJSON.runtime + ' seconds</p>';
-	};
+		return user_input % 1 === 0 && user_input !== '';
+	};*/
 
 	return {
 
-		get_answer: function(problem_id) {
+		/*render_answer: function(json_response) {
+			var objJSON = eval('(function(){return ' + json_response + ';})()');
+			document.getElementById('canvas').innerHTML = '' +
+				'<p class"answer">Answer: ' + objJSON.answer + '</p>' + 
+				'<p class="runtime">Runtime: ' + objJSON.runtime + ' seconds</p>';
+		},*/
 
-			alert(problem_id);
+		request_answer: function(callback, input) {
+
 			var requestObj = new XMLHttpRequest();
-			var input = get_input();
-			
-			if (input === undefined) { return; }
+			var problem_id = get_problem_id();
+			var url = '/api/q=' + problem_id + '&n=' + input;
 
 			requestObj.onreadystatechange = function() {
 				if (requestObj.readyState === 4 && requestObj.status === 200) {
-					console.log(requestObj.responseText);
-					render_answer(requestObj.responseText); // document.getElementById('canvas').innerHTML = requestObj.responseText;
+					callback(requestObj.responseText);
 				}
 			}
-			requestObj.open('GET', '/api/q=pe' + + '&n=' + input, true);
+
+			requestObj.open('GET', url, true);
 			requestObj.send();
 		}
 

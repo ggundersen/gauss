@@ -30,8 +30,10 @@ class MainPage(webapp2.RequestHandler):
 		self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
-    (r'/', MainPage),
-    (r'/problems', problemsPage.ProblemsPage),
-    (r'/problems/(.*)', baseHandler.BaseHandler),
-    (r'/api/q=(.*)&n=(.*)', problemHandler.ProblemHandler)
+		(r'/', MainPage),
+		(r'/problems', problemsPage.ProblemsPage),
+		(r'/problems/(.*)', templateHandler.TemplateHandler),
+		(r'/api/q=(.*)&n=(.*)', problemHandler.ProblemHandler),
+		(r'/test', testHandler.TestHandler),
+		(r'/refresh', refreshHandler.RefreshHandler)
 ], debug=True)

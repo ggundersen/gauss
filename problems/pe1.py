@@ -1,6 +1,6 @@
-def main(limit):
+def main():
 	ans = 0
-	for i in range(limit):
-		if i % div_1 == 0 or i % div_2 == 0:
+	for i in range(1000):
+		if i % 3 == 0 or i % 5 == 0:
 			ans += i
 	return ans
