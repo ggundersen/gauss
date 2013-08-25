@@ -1,3 +1,6 @@
+def main():
+    pass
+
 def getProduct():
     prod = 0
     for i in range(999,0,-1):

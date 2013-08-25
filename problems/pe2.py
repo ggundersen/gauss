@@ -1,8 +1,8 @@
-import gmath as g
+import lib.gmath as g
 
 def main():
-  
-  div = 100
+
+  div = 2
   ans = 0
   gen = g.gen_fibonacci()
   fib = gen.next()
