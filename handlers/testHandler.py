@@ -23,8 +23,6 @@ class TestHandler(webapp2.RequestHandler):
 		self.response.write('<li>' + str(problems_orm) + '</li>')
 		self.response.write('<li>' + str(problems_run) + '</li>')
 
-
-
 		"""
 		solved_problems = []
 		for importer, modname, ispkg in pkgutil.iter_modules(problems.__path__):

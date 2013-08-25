@@ -2,6 +2,7 @@ import importlib
 import json
 import pkgutil
 import problems
+
 import time
 import webapp2
 
@@ -28,14 +29,16 @@ class ProblemHandler(webapp2.RequestHandler):
 
 	@classmethod
 	def get_all_problem_data(cls):
+		
 		output = []
 		for importer, problem_id, ispkg in pkgutil.iter_modules(problems.__path__):
 			mod = importlib.import_module('problems.' + problem_id)
 			func = getattr(mod, 'main')
 			answer = func()
-			output.append((problem_id, answer))
+			output.append((int(problem_id[2:]), answer))
 
 		return output
+
 
 		#mod = importlib.import_module('problems.' + str(problem_id))
 		#func = getattr(mod, 'main')
