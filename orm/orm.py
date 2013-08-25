@@ -5,12 +5,10 @@ ANCESTOR_KEY = ndb.Key('All', '1')
 
 class Orm:
 
-	@classmethod
-	def get_problems(cls, title=False):
+	def get_problems(self, title=False):
 		return Problem.get_sorted_problems(ANCESTOR_KEY)
 
-	@classmethod
-	def flush_datastore(cls):
+	def flush_datastore(self):
 		problems = Problem.get_ndb_problems(ANCESTOR_KEY)
 		for p in problems:
 			p.key.delete()

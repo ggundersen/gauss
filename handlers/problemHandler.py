@@ -8,13 +8,12 @@ import webapp2
 
 class ProblemHandler(webapp2.RequestHandler):
 
-	@classmethod
-	def get(cls, problem_id):
+	def get(self, problem_id):
 		output = self.get_data(problem_id)
-		cls.response.write(output)
+		self.response.write(output)
 
-	@classmethod
-	def get_problem_data(cls, problem_id):
+	@staticmethod
+	def get_problem_data(problem_id):
 
 		# Get specific Python module
 		mod = importlib.import_module('problems.' + str(problem_id))
@@ -27,8 +26,8 @@ class ProblemHandler(webapp2.RequestHandler):
 
 		return {'id': problem_id, 'answer': answer, 'runtime': t}
 
-	@classmethod
-	def get_all_problem_data(cls):
+	@staticmethod
+	def get_all_problem_data():
 		
 		output = []
 		for importer, problem_id, ispkg in pkgutil.iter_modules(problems.__path__):
@@ -38,8 +37,3 @@ class ProblemHandler(webapp2.RequestHandler):
 			output.append((int(problem_id[2:]), answer))
 
 		return output
-
-
-		#mod = importlib.import_module('problems.' + str(problem_id))
-		#func = getattr(mod, 'main')
-		#return func()

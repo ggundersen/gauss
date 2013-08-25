@@ -11,7 +11,7 @@ class RefreshHandler(webapp2.RequestHandler):
 		orm.flush_datastore()
 		orm.rebuild_datastore()
 
-		problem_tuples = orm.get_data(title=True)
+		problem_tuples = orm.get_problems(title=True)
 
 		self.response.write('<h4>Refreshed datastore</h4>')
 		self.response.write('<table><tr><td>#</td><td>Answer</td><td>Title</td></tr>')

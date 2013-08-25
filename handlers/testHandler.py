@@ -15,7 +15,7 @@ class TestHandler(webapp2.RequestHandler):
 	def get(self):
 
 		orm = Orm()
-		ph = ProblemHandler()
+		ph  = ProblemHandler()
 
 		problems_orm = orm.get_problems()
 		problems_run = ph.get_all_problem_data()
