@@ -1,8 +1,12 @@
-'''
-The following is a library of useful mathematical functions for Project Euler
-Most of the scripts were written by Gregory Gundersen, although many of them are not original
-The library has been compiled by Gregory Gundersen
-'''
+# The following is a library of useful mathematical functions for Project Euler
+# Most of the scripts were written by Gregory Gundersen, although many of them are not original
+# The library has been compiled by Gregory Gundersen
+
+# version = '4.2.6';
+
+# 2.0 - 2013.08.26 - Renaming all functions to underscore rather than camel case
+# 1.0 - 2013.01.14 - Initial commit
+
 import time
 
 def get_gcd(a, b):
@@ -14,7 +18,7 @@ def get_gcd(a, b):
         b = a%b
     return a
 
-def isOdd(n):
+def is_odd(n):
     if n % 2 == 1:
         return True
     return False
@@ -41,7 +45,7 @@ def is_circular_prime(p):
             return False
     return True
 
-def genPrimes():
+def gen_primes():
     primes, n, i = [2], 1, 1
     yield 2
     while True:
@@ -110,7 +114,7 @@ def get_prime_factors(n):
 
     return primeFactors
 
-def gen_triangle_number():
+def gen_triangle_numbers():
     tri, inc = 1, 1
     yield 1
     while True:
@@ -127,7 +131,7 @@ def get_pentagonal_number(n):
 def get_hexagonal_number(n):
     return n * (2*n - 1)
 
-def genComposites():
+def gen_composite():
     yield 4
     n = 5
     while True:
@@ -137,7 +141,7 @@ def genComposites():
         else:
             n += 1
 
-def genCompositesOdd():
+def gen_composite_odd():
     yield 9
     n = 15
     while True:
@@ -160,7 +164,7 @@ def factorial(n):
     else:
         return n * factorial(n-1)
 
-def getFibonacci(n):
+def get_fibonacci(n):
     if n == 0:
         return 0
     elif n == 1:
@@ -174,7 +178,7 @@ def gen_fibonacci():
         yield a
         a, b = b, a + b
 
-def getFigurate(n, M):
+def get_figurate(n, M):
     return (factorial(M+n-1) / factorial(M-1)) / factorial(n)
 
 def get_proper_divisors(n):
@@ -226,19 +230,6 @@ def base10_to_baseK(n, K, L):
     else:
         L.append(n % K)
         return base10_to_baseK(n/K, K, L)
-
-def get_alphabet_value_char(char):
-    alphabet_values = {
-        'a':1, 'b':2, 'c':3, 'd':4, 'e':5, 'f':6, 'g':7, 'h':8, 'i':9, 'j':10, 'k':11, 'l':12, 'm':13,
-        'n':14, 'o':15, 'p':16, 'q':17, 'r':18, 's':19, 't':20, 'u':21, 'v':22, 'w':23, 'x':24, 'y':25, 'z':26
-        }
-    return alphabet_values[char.lower()]
-
-def get_alphabet_value_word(word):
-    value = 0
-    for char in word:
-        value += get_alphabet_value_char(char)
-    return value
 
 def is_pandigital(n):
     L = map(str, range(1, len(str(n))+1))
@@ -320,3 +311,16 @@ def rotate_digits(n):
     n_list[-1] = n_first
 
     return int(''.join(n_list))
+
+def get_alphabet_value_char(char):
+    alphabet_values = {
+        'a':1, 'b':2, 'c':3, 'd':4, 'e':5, 'f':6, 'g':7, 'h':8, 'i':9, 'j':10, 'k':11, 'l':12, 'm':13,
+        'n':14, 'o':15, 'p':16, 'q':17, 'r':18, 's':19, 't':20, 'u':21, 'v':22, 'w':23, 'x':24, 'y':25, 'z':26
+        }
+    return alphabet_values[char.lower()]
+
+def get_alphabet_value_word(word):
+    value = 0
+    for char in word:
+        value += get_alphabet_value_char(char)
+    return value
