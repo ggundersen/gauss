@@ -8,21 +8,14 @@ There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 Find the product abc.
 
 '''
+import lib.gmath as g
 
 prod = 1000
-p = int(prod/2)
+limit = int(prod/2)
 
-def isTriplet(a,b,c):
-    if a**2+b**2 == c**2:
-        return True
-    else:
-        return False
-
-for i in range(0,p):
-    for j in range(0,p):
-        for k in range(0,p):
-            if isTriplet(i,j,k) and i != j and i+j+k == prod:
-                print i
-                print j
-                print k
-                print i*j*k
+def main():
+    for i in range(0, limit):
+        for j in range(0, limit):
+            for k in range(0, limit):
+                if g.is_triplet(i,j,k) and i != j and i+j+k == prod:
+                    return i*j*k
