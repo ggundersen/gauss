@@ -8,9 +8,8 @@ ANCESTOR_KEY = ndb.Key('All', '1')
 class Orm:
 
     def get_problems(self, title=False):
-        if title == True:
-            return Problem.get_sorted_problems(ancestor_key=ANCESTOR_KEY, title=True)
-        return Problem.get_sorted_problems(ancestor_key=ANCESTOR_KEY)
+
+        return Problem.get_sorted_problems(ancestor_key=ANCESTOR_KEY, title=title)
 
 
     def flush_datastore(self):

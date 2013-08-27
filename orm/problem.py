@@ -22,11 +22,12 @@ class Problem(ndb.Model):
         problems = cls.query(ancestor=ancestor_key)
         if title == True:
             for problem in problems:
-                # call str() on problem.title because it is a unicode string
+               # call str() on problem.title because it is a unicode string
                 output.append(
                     (problem.number, problem.answer, str(problem.title))
                 )
         else:
             for problem in problems:
                 output.append((problem.number, problem.answer))            
-            return sorted(output, key=lambda x: x[0])
+        return sorted(output, key=lambda x: x[0])
+        #return output

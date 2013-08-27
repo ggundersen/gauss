@@ -18,8 +18,8 @@ class TestHandler(webapp2.RequestHandler):
         orm = Orm()
         ph = ProblemHandler()
 
-        problems_orm = orm.get_problems()
-        problems_run = ph.get_all_problem_data()
+        problems_from_ds = orm.get_problems()
+        problems_run = ph.run_all_problems()
 
-        self.response.write('<li>' + str(problems_orm) + '</li>')
+        self.response.write('<li>' + str(problems_from_ds) + '</li>')
         self.response.write('<li>' + str(problems_run) + '</li>')
