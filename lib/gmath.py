@@ -1,11 +1,15 @@
-# The following is a library of useful mathematical functions for Project Euler
-# Most of the scripts were written by Gregory Gundersen, although many of them are not original
-# The library has been compiled by Gregory Gundersen
+"""----------------------------------------------------------------------------
+gmath
+Gregory Gundersen
 
-# version = '4.2.6';
+The following is a library of useful mathematical functions for Project Euler.
+Most of the scripts were written by Gregory Gundersen, although many of them
+are not original.
 
-# 2.0 - 2013.08.26 - Renaming all functions to underscore rather than camel case
-# 1.0 - 2013.01.14 - Initial commit
+2013-08-24
+2.0 - Renaming all functions to underscore rather than camel case
+1.0 - Initial commit
+----------------------------------------------------------------------------"""
 
 import time
 
@@ -45,9 +49,11 @@ def is_circular_prime(p):
             return False
     return True
 
-def gen_primes():
-    primes, n, i = [2], 1, 1
-    yield 2
+def gen_primes(start=2):
+    primes = [2]
+    n = 1
+    i = 1
+    yield start
     while True:
         n += 1
         for p in primes:
@@ -189,7 +195,8 @@ def get_proper_divisors(n):
     return divs
 
 def is_amicable_pair(a,b):
-    if sum(get_proper_divisors(a)) == b and sum(get_proper_divisors(b)) == a and a != b:
+    if sum(get_proper_divisors(a)) == b and\
+        sum(get_proper_divisors(b)) == a and a != b:
         return True
     return False
 
@@ -259,15 +266,16 @@ def is_truncatable(n):
             return False
     return True
 
-def is_pythagorean_triple(L):
-    if L[0]**2 + L[1]**2 == L[2]**2:
+def is_pythagorean_triplet(a, b, c):
+    if a**2 + b**2 == c**2:
         return True
     return False
 
 def get_pythagorean_triples(p):
     ps = []
     if p % 2 != 0: return None
-    for a in range(1, int(p/2)): # a+b > c ==> a+b+c > 2c ==> if 2c=p < limit, p/2 < limit
+    # a+b > c ==> a+b+c > 2c ==> if 2c=p < limit, p/2 < limit
+    for a in range(1, int(p/2)):
         for b in range(a, int(p/2)):
             c = (a**2 + b**2)**0.5
             if a+b+c == p and is_pythagorean_triple([a,b,c]):
@@ -282,9 +290,7 @@ def get_multiplicative_order(b, n):
         k += 1
     return k
 
-"""
-HELPER FUNCTIONS
-"""
+# Helpers
 
 def is_permutation(n, m):
     """ If n is a permutation of m, return True, else False
@@ -314,9 +320,10 @@ def rotate_digits(n):
 
 def get_alphabet_value_char(char):
     alphabet_values = {
-        'a':1, 'b':2, 'c':3, 'd':4, 'e':5, 'f':6, 'g':7, 'h':8, 'i':9, 'j':10, 'k':11, 'l':12, 'm':13,
-        'n':14, 'o':15, 'p':16, 'q':17, 'r':18, 's':19, 't':20, 'u':21, 'v':22, 'w':23, 'x':24, 'y':25, 'z':26
-        }
+        'a':1, 'b':2, 'c':3, 'd':4, 'e':5, 'f':6, 'g':7, 'h':8, 'i':9, 'j':10,
+        'k':11, 'l':12, 'm':13, 'n':14, 'o':15, 'p':16, 'q':17, 'r':18, 's':19,
+        't':20, 'u':21, 'v':22, 'w':23, 'x':24, 'y':25, 'z':26
+    }
     return alphabet_values[char.lower()]
 
 def get_alphabet_value_word(word):
