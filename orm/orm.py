@@ -8,11 +8,12 @@ ANCESTOR_KEY = ndb.Key('All', '1')
 class Orm:
 
     def get_problems(self, title=False):
+        if title == True:
+            return Problem.get_sorted_problems(ancestor_key=ANCESTOR_KEY, title=True)
+        return Problem.get_sorted_problems(ancestor_key=ANCESTOR_KEY)
 
-        return Problem.get_sorted_problems(ANCESTOR_KEY, title)
 
-
-	def flush_datastore(self):
+    def flush_datastore(self):
 
         problems = Problem.get_ndb_problems(ANCESTOR_KEY)
         for p in problems:
@@ -28,8 +29,8 @@ class Orm:
             problem.put()
 
 
-	@classmethod
-	def get_canonical_data(cls):
+    @classmethod
+    def get_canonical_data(cls):
 
         return [\
             [1, 233168, 'Multiples of 3 and 5'],\

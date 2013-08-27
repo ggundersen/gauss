@@ -15,25 +15,30 @@
 # limitations under the License.
 #
 
+
 import jinja2
 import os
 import webapp2
-
 from handlers import *
 
-template_path = os.path.normpath(os.path.dirname(__file__) + os.environ["TEMPLATE_PATH"])
+
+template_path = os.path.normpath(os.path.dirname(__file__) +\
+    os.environ["TEMPLATE_PATH"])
 JINJA_ENV = jinja2.Environment(loader=jinja2.FileSystemLoader(template_path))
 
+
 class MainPage(webapp2.RequestHandler):
-	def get(self):
-		template = JINJA_ENV.get_template('index.html')
-		self.response.write(template.render())
+
+    def get(self):
+        template = JINJA_ENV.get_template('index.html')
+        self.response.write(template.render())
+
 
 app = webapp2.WSGIApplication([
-		(r'/', MainPage),
-		(r'/problems', problemsPage.ProblemsPage),
-		(r'/problems/(.*)', templateHandler.TemplateHandler),
-		(r'/api/q=(.*)&n=(.*)', problemHandler.ProblemHandler),
-		(r'/test', testHandler.TestHandler),
-		(r'/refresh', refreshHandler.RefreshHandler)
+    (r'/', MainPage),
+    (r'/problems', problemsPage.ProblemsPage),
+    (r'/problems/(.*)', templateHandler.TemplateHandler),
+    (r'/api/q=(.*)&n=(.*)', problemHandler.ProblemHandler),
+    (r'/test', testHandler.TestHandler),
+    (r'/refresh', refreshHandler.RefreshHandler)
 ], debug=True)
