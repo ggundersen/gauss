@@ -42,4 +42,4 @@ class ProblemHandler(webapp2.RequestHandler):
         a = fn()
         t = '{0:.10f}'.format(time.time() - s)
 
-        return '{"answer": 4613732, "runtime": "0.0000369549", "id": "2"}'
+        return { 'answer' : a , 'runtime' : t, 'id': problem_id }
