@@ -1,5 +1,5 @@
 from google.appengine.ext import ndb
-from problem import Problem
+from problemModel import ProblemModel
 
 
 ANCESTOR_KEY = ndb.Key('All', '1')
@@ -9,12 +9,12 @@ class Orm:
 
     def get_problems(self, title=False):
 
-        return Problem.get_sorted_problems(ancestor_key=ANCESTOR_KEY, title=title)
+        return ProblemModel.get_sorted_problems(ancestor_key=ANCESTOR_KEY, title=title)
 
 
     def flush_datastore(self):
 
-        problems = Problem.get_ndb_problems(ANCESTOR_KEY)
+        problems = ProblemModel.get_ndb_problems(ANCESTOR_KEY)
         for p in problems:
             p.key.delete()
 
@@ -24,7 +24,7 @@ class Orm:
 
         data = cls.get_canonical_data()
         for p in data:
-            problem = Problem(number=p[0], answer=p[1], title=p[2], parent=ANCESTOR_KEY)
+            problem = ProblemModel(number=p[0], answer=p[1], title=p[2], parent=ANCESTOR_KEY)
             problem.put()
 
 

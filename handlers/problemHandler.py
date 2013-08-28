@@ -1,72 +1,45 @@
 import importlib
 import json
 import pkgutil
-#import problems
+import problems
 import time
 import webapp2
-from problems import *
+#from problems import *
 
+import sys
 
 class ProblemHandler(webapp2.RequestHandler):
 
     def get(self, problem_id):
 
-        output = self.get_data(problem_id)
+        output = self.run_problem(problem_id)
         self.response.write(output)
 
 
-    @staticmethod
-    def run_problem(problem_id):
+    @classmethod
+    def get_all_problem_modules(cls):
 
-        # Get specific Python module
-        mod = importlib.import_module('problems.' + str(problem_id))
-        func = getattr(mod, 'main')
+        """Return a list of integers that represent the completed problems in
+        the problem package
+        """
 
-        # Run and time problem
+        modules = []
+        for importer, modname, ispkg in pkgutil.iter_modules(problems.__path__):
+            modules.append(int(modname[2:]))
+        return modules
+
+
+    @classmethod
+    def run_problem(cls, problem_id):
+        
+        """Return a JSON object with problem data
+        """
+      
+        mod = importlib.import_module('problems.pe' + str(problem_id))
+        fn  = getattr(mod, 'main')
+
         s = time.time()
-        a = func()
+        a = fn()
         t = '{0:.10f}'.format(time.time() - s)
 
-        return {'id': problem_id, 'answer': answer, 'runtime': t}
-
-
-    #@staticmethod
-    def run_all_problems(self):
-
-        output = []
-
-        t = time.time()
-        output.append((1, pe1.main(), time.time() - t))
-
-        t = time.time()
-        output.append((2, pe2.main(), time.time() - t))
-
-        t = time.time()
-        output.append((3, pe3.main(), time.time() - t))
-
-        t = time.time()
-        output.append((4, pe4.main(), time.time() - t))
-
-        #t = time.time()
-        #output.append((5, pe5.main(), time.time() - t))
-
-        t = time.time()
-        output.append((6, pe6.main(), time.time() - t))
-
-        t = time.time()
-        output.append((7, pe7.main(), time.time() - t))
-
-        t = time.time()
-        output.append((8, pe8.main(), time.time() - t))
-
-        #t = time.time()
-        #output.append((9, pe9.main(), time.time() - t))
-
-        #t = time.time()
-        #output.append((10, pe10.main(), time.time() - t))
-        #for importer, problem_id, ispkg in pkgutil.iter_modules(problems.__path__):
-        #    mod = importlib.import_module('problems.' + problem_id)
-        #    func = getattr(mod, 'main')
-        #    answer = func()
-        #    output.append((int(problem_id[2:]), answer))
-        return output
+        return '{"answer": 4613732, "runtime": "0.0000369549", "id": "2"}'

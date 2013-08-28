@@ -1,52 +1,47 @@
 var GAUSS = (function() {
 
-	function get_problem_id() {
-		var m = document.getElementsByTagName('meta');
-		return m[0].getAttribute('name');
-	};
 
-	/*function get_default_input() {
-		return 1;
-	};
+	//var problemList = document.getElementById('problemList');
 
-	function get_input() {
-		var input = document.getElementById('user_input').value;
-		if (validate_input(input)) {
-			return input;
-		} else {
-			alert('Please input an integer.');
-			return;
+
+	var call_ajax = function(url, callback) {
+
+		var requestObj = new XMLHttpRequest();
+		requestObj.onreadystatechange = function() {
+			if (requestObj.readyState === 4 && requestObj.status === 200) {
+				var json = JSON.parse(requestObj.responseText);
+
+				render_problem(json);
+			}
 		}
+		requestObj.open('GET', url, true);
+		requestObj.send();
+
 	};
 
-	function validate_input(user_input) {
-		return user_input % 1 === 0 && user_input !== '';
-	};*/
+
+	var render_problem = function(json) {
+		var problemList = document.getElementById('problemList');
+		var child = document.createElement('li');
+		child.innerHTML = json['answer'];
+		problemList.appendChild(child);
+	};
+
+
+	var run_problem = function(problem_id) {
+		call_ajax('/api/problem=' + problem_id, render_problem);
+	};
+
 
 	return {
+		run_problem: run_problem
+	}
 
-		/*render_answer: function(json_response) {
-			var objJSON = eval('(function(){return ' + json_response + ';})()');
-			document.getElementById('canvas').innerHTML = '' +
-				'<p class"answer">Answer: ' + objJSON.answer + '</p>' + 
-				'<p class="runtime">Runtime: ' + objJSON.runtime + ' seconds</p>';
-		},*/
+})();
 
-		request_answer: function(callback, input) {
+window.onload = function() {
 
-			var requestObj = new XMLHttpRequest();
-			var problem_id = get_problem_id();
-			var url = '/api/q=' + problem_id + '&n=' + input;
+	GAUSS.run_problem(2, GAUSS.render_callback);
+	//alert(answer);
 
-			requestObj.onreadystatechange = function() {
-				if (requestObj.readyState === 4 && requestObj.status === 200) {
-					callback(requestObj.responseText);
-				}
-			}
-
-			requestObj.open('GET', url, true);
-			requestObj.send();
-		}
-
-	}; // end return object
-})(); // end GAUSS module
+};

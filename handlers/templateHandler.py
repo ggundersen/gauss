@@ -19,5 +19,5 @@ class TemplateHandler(webapp2.RequestHandler):
             'js_path' : problem_id + '.js',
             'css_path' : problem_id + '.css'
         }
-        template = JINJA_ENV.get_template(problem_id + '.html')
+        template = JINJA_ENV.get_template('pe' + problem_id + '.html')
         self.response.write(template.render(template_values))
