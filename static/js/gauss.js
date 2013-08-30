@@ -17,7 +17,7 @@ var GAUSS = (function() {
 
 
     var maskAnswer = function(answer) {
-        
+
         return answer;
     };
 
@@ -34,7 +34,7 @@ var GAUSS = (function() {
             answerClass = 'fail';
         }
         else {
-            json['calculated']) = maskAnswer(json['calculated']);
+            json['calculated'] = maskAnswer(json['calculated']);
             answerClass = 'pass';
         }
 
