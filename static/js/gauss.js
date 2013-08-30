@@ -1,7 +1,7 @@
 var GAUSS = (function() {
 
 
-    var call_ajax = function(url, callback) {
+    var callAjax = function(url, callback) {
 
         $.ajax({
             url: url,
@@ -16,28 +16,44 @@ var GAUSS = (function() {
     };
 
 
-    var render_problem = function(json) {
+    var maskAnswer = function(answer) {
+        
+        return answer;
+    };
+
+
+    var testProblem = function(json) {
 
         var $pl = $('#problemList');
-        var answerClass1;
-        var answerClass2;
+        var answerClass;
+        var runtimeClass;
         var template;
 
+        // Check answer
         if (json['calculated'] !== json['correct']) {
-            answerClass1 = 'fail';
-        }
-        if (json['runtime'] > 100) {
-            answerClass2 = 'fail'
+            answerClass = 'fail';
         }
         else {
-            answerClass1 = 'pass';
+            json['calculated']) = maskAnswer(json['calculated']);
+            answerClass = 'pass';
+        }
+
+        // Check runtime
+        if (json['runtime'] > 60) {
+            runtimeClass = 'fail';
+        }
+        else if (json['runtime'] > 10) {
+            runtimeClass = 'lowpass';
+        }
+        else {
+            runtimeClass = 'pass';
         }
 
         template =
             '<li>' +
                 '<span>Problem: ' + json['id'] + '</span><br>' +
-                '<span class="' + answerClass1 + '">Answer: ' + json['calculated'] + '</span><br>' +
-                '<span class="' + answerClass2 + '">Runtime: ' + json['runtime'] + '</span><br>' +
+                '<span class="' + answerClass + '">Answer: ' + json['calculated'] + '</span><br>' +
+                '<span class="' + runtimeClass + '">Runtime: ' + json['runtime'] + '</span><br>' +
             '</li>'
 
         if ($pl.children().length) {
@@ -49,12 +65,12 @@ var GAUSS = (function() {
     };
 
 
-    var run_problem = function(problem_id) {
-        call_ajax('/api/problem=' + problem_id, render_problem);
+    var runProblem = function(problem_id) {
+        callAjax('/api/problem=' + problem_id, testProblem);
     };
 
 
     return {
-        run_problem: run_problem
+        runProblem: runProblem
     }
 })();

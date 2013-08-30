@@ -17,7 +17,7 @@ def main():
 
     result = 0
     gen = g.gen_primes()
-    for i in range(10002):
+    for i in range(10001):
         p = gen.next()
         result = p
     return result

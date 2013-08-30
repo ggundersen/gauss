@@ -20,7 +20,8 @@ def main():
 
     result = 0
     n = 600851475143
-    for i in range(1, int(n**0.5), 2):
+    m = int(n**0.5)
+    for i in range(1, m, 2):
         if g.is_prime(i) == True and n % i == 0:
             result = i
     return result

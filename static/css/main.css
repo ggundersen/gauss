@@ -54,6 +54,9 @@ span.indention {
 .pass {
 	color: #46b525;
 }
+.lowpass {
+	color: #ff9a00;
+}
 .fail {
 	color: red;
 }

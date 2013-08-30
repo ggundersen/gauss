@@ -1,12 +1,12 @@
 window.onload = function() {
-    GAUSS.run_problem(1);
-    GAUSS.run_problem(2);
-    GAUSS.run_problem(3);
-    GAUSS.run_problem(4);
-    GAUSS.run_problem(5);
-    GAUSS.run_problem(6);
-    GAUSS.run_problem(7);
-    GAUSS.run_problem(8);
-    GAUSS.run_problem(9);
-    GAUSS.run_problem(10);
+    GAUSS.runProblem(1);
+    GAUSS.runProblem(2);
+    GAUSS.runProblem(3);
+    GAUSS.runProblem(4);
+    GAUSS.runProblem(5);
+    GAUSS.runProblem(6);
+    GAUSS.runProblem(7);
+    GAUSS.runProblem(8);
+    GAUSS.runProblem(9);
+    GAUSS.runProblem(10);
 };
