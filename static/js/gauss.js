@@ -19,21 +19,25 @@ var GAUSS = (function() {
     var render_problem = function(json) {
 
         var $pl = $('#problemList');
-        var answerClass;
+        var answerClass1;
+        var answerClass2;
         var template;
 
-        if (json['calculated'] !== json['correct'] || json['runtime'] > 100) {
-            answerClass = 'fail';
+        if (json['calculated'] !== json['correct']) {
+            answerClass1 = 'fail';
+        }
+        if (json['runtime'] > 100) {
+            answerClass2 = 'fail'
         }
         else {
-            answerClass = 'pass';
+            answerClass1 = 'pass';
         }
 
         template =
             '<li>' +
                 '<span>Problem: ' + json['id'] + '</span><br>' +
-                '<span class="' + answerClass + '">Answer: ' + json['calculated'] + '</span><br>' +
-                '<span>Runtime: ' + json['runtime'] + '</span><br>' +
+                '<span class="' + answerClass1 + '">Answer: ' + json['calculated'] + '</span><br>' +
+                '<span class="' + answerClass2 + '">Runtime: ' + json['runtime'] + '</span><br>' +
             '</li>'
 
         if ($pl.children().length) {
