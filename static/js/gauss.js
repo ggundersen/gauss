@@ -1,4 +1,4 @@
-(function() {
+var GAUSS = (function() {
 
 
     var call_ajax = function(url, callback) {
@@ -15,17 +15,18 @@
         });
     };
 
+
     var render_problem = function(json) {
 
         var $pl = $('#problemList');
         var answerClass;
         var template;
 
-        if (json['calculated'] === json['correct']) {
-            answerClass = 'pass';
+        if (json['calculated'] !== json['correct'] || json['runtime'] > 100) {
+            answerClass = 'fail';
         }
         else {
-            answerClass = 'fail';
+            answerClass = 'pass';
         }
 
         template =
@@ -49,19 +50,7 @@
     };
 
 
-    window.onload = function() {
-
-        run_problem(1);
-        run_problem(2);
-        run_problem(3);
-        run_problem(4);
-        run_problem(5);
-        run_problem(6);
-        run_problem(7);
-        run_problem(8);
-        run_problem(9);
-        run_problem(10);
-    };
-
+    return {
+        run_problem: run_problem
+    }
 })();
-

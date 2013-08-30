@@ -1,0 +1,20 @@
+​<!DOCTYPE html>
+<head>
+    <title>Datastore Refresher</title>
+    <link href='/css/main.css' rel='stylesheet' type='text/css' />
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+    <script src='/js/gauss.js'></script>
+    <script src='/js/refresh.js'></script>  
+</head>
+<body>
+    <h3>Datastore Refresher</h3>
+    <table>
+
+
+    {% for problem in problems %}
+      <tr><td>{{ problem[0] }}</td><td>{{ problem[1] }}</td><td>{{ problem[2] }}</td></tr>
+    {% endfor %}
+
+    </table>
+</body>
+</html>

@@ -3,9 +3,8 @@ gmath
 Gregory Gundersen
 
 gmath a library of useful mathematical functions. The library was written as a
-helper library for Project Euler, but the functions work generally. Most of the
-scripts were written by Gregory Gundersen, although many of them are not
-original.
+helper library for Project Euler. Most of the scripts were written by Gregory
+Gundersen, although many of them are not original.
 
 2013-08-24
 2.0 - Renaming all functions to underscore rather than camel case
@@ -353,7 +352,7 @@ def get_pythagorean_triples(p):
 
 def get_multiplicative_order(b, n):
     
-    """ This function should be improved to always return a meaningful result
+    """This function should be improved to always return a meaningful result
     e.g. It falls into an infinite loop for b = 10, n = 2 """
 
     k = 1
