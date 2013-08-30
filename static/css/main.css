@@ -6,12 +6,6 @@ body {
 	padding: 10px 0 50px 50px;
 	width: 400px;
 }
-.pass {
-	color: green;
-}
-.fail {
-	color: red;
-}
 p.top {
 	margin-top: 40px;
 }
@@ -52,4 +46,13 @@ li {
 }
 #problemList {
 	padding-left: 15px;
+}
+/*#problemList li {
+	display: none; /* Hide in CSS; show in JS
+}*/
+.pass {
+	color: #46b525;
+}
+.fail {
+	color: red;
 }
