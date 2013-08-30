@@ -4,9 +4,8 @@ import pkgutil
 import problems
 import time
 import webapp2
-#from problems import *
+from orm.orm import Orm
 
-import sys
 
 class ProblemHandler(webapp2.RequestHandler):
 
@@ -34,12 +33,14 @@ class ProblemHandler(webapp2.RequestHandler):
         
         """Return a JSON object with problem data
         """
-      
+
+        orm = Orm()
+        answers = orm.get_canonical_data()
+        answer = answers[int(problem_id) - 1][1]
+
         mod = importlib.import_module('problems.pe' + str(problem_id))
         fn  = getattr(mod, 'main')
-
         s = time.time()
         a = fn()
         t = '{0:.10f}'.format(time.time() - s)
-
-        return { 'answer' : a , 'runtime' : t, 'id': problem_id }
+        return json.dumps({ 'calculated': a , 'runtime': t, 'id': problem_id, 'correct': answer })

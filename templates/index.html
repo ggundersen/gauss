@@ -1,9 +1,9 @@
 ​<!DOCTYPE html>
 <html>
-	<head>
-		<title>Gauss</title>
+<head>
+    <title>Gauss</title>
     <link href='/css/main.css' rel='stylesheet' type='text/css'>
-	</head>
+</head>
   <body>
     <h3>Gauss</h3>
     <h4>Intro</h4>
@@ -11,11 +11,11 @@
     	Gauss is a web application for standardizing, testing, and analyzing <a href='http://projecteuler.net/'>Project Euler</a> solutions. All calculations are performed at runtime.
     </p>
     <p>
-        Click <a href='/problems'>here</a> for more.
+        Click <a href='/test'>here</a> for more.
     </p>
     <h4>The <span class='code'>gmath</span> library</h4>
     <p>
-        While Project Euler problems are standalone, many of them rely on common mathematical functions. These recurring functions are abstracted away by the <span class='code'><a href='https://github.com/ggundersen/Project-Euler/blob/master/gmath.py'>gmath</a></span> library, resulting in cross-problem performance gains. For example:
+        While Project Euler problems are standalone, many of them rely on common mathematical functions. These recurring functions are abstracted away by the <span class='code'><a href='https://github.com/ggundersen/Gauss/blob/master/lib/gmath.py'>gmath</a></span> library, resulting in cross-problem performance gains. For example
         <span class='code block'>
         def factorial(n):<br>
             <span class='indention'>
@@ -25,7 +25,7 @@
                 <span class='indention'>return n * factorial(n-1)</span>
             </span>
         </span>
-        was eventually rewritten to be:
+        was refactored to be
         <span class='code block'>
             def get_factorial(n):<br>
             <span class='indention'>
@@ -35,17 +35,17 @@
                 return facts[n]
             </span>
         </span>
-        The latter is orders of magnitude faster for larger values of <span class='code'>n</span> and improved multiple problems.
+        The latter is orders of magnitude faster for large values of <span class='code'>n</span> and optimized multiple solutions.
     </p>
-    <h4>A mathematical foundation</h4>
+    <h4>The computational wall</h4>
     <p>
-        Many problems have trivial, brute-force "solutions" that fail due to hitting a computational wall. The primary thrill in solving such problems is discovering that a seemingly unrelated mathematical idea removes the wall entirely. These discoveries are documented.
+        Many problems have trivial, brute-force "solutions" that fail due to hitting a computational wall. The primary thrill in solving such problems is discovering that a seemingly unrelated mathematical idea removes the wall entirely. Without giving away solutions, these discoveries are documented.
     </p>
     <h4>&c.</h4>
-    	Gauss is being developed on the Google App Engine platform. The application uses the webapp2 framework, Python 2.7, and jinja2.
+    	Gauss is being developed on the Google App Engine platform. The application uses the webapp2 framework, Python 2.7, JavaScript, jQuery, and jinja2.
     </p>
     <p class='top'>
         2013-07-20 : <a href='http://www.gregorygundersen.com'>gwg</a> 
     </p>
-  </body>
+</body>
 </html>

@@ -4,7 +4,13 @@ body {
 	font-size: 13px;
 	margin: 0;
 	padding: 10px 0 50px 50px;
-	width: 600px;
+	width: 400px;
+}
+.pass {
+	color: green;
+}
+.fail {
+	color: red;
 }
 p.top {
 	margin-top: 40px;
@@ -43,4 +49,7 @@ span.indention {
 }
 li {
 	padding: 2px 0;
+}
+#problemList {
+	padding-left: 15px;
 }

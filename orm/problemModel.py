@@ -30,4 +30,3 @@ class ProblemModel(ndb.Model):
             for problem in problems:
                 output.append((problem.number, problem.answer, None))            
         return sorted(output, key=lambda x: x[0])
-        #return output
