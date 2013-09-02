@@ -20,5 +20,6 @@ class TestPage(webapp2.RequestHandler):
         orm = Orm()
         datastore_problems = orm.get_problems()
         
+        template_values = {}
         template = JINJA_ENV.get_template('test.html')
-        self.response.write(template.render())
+        self.response.write(template.render(template_values))

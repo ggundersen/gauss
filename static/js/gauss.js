@@ -16,15 +16,35 @@ var GAUSS = (function() {
     };
 
 
-    var maskAnswer = function(answer) {
+    var getUrlParameters = function() {
 
-        return answer;
+        var params = {};
+        var qs = window.location.pathname.replace(/\//, '');
+        var pairs = qs.split('&');
+        for (var i=0; i<pairs.length; i++) {
+            var kv = pairs[i].split('=');
+            params[kv[0]] = kv[1];
+        }
+        return params;
     };
 
 
-    var testProblem = function(json) {
+    var maskAnswer = function(answer) {
 
-        var $pl = $('#problemList');
+        var s = answer.slice(0, length-2).replace(/[0-9]/g, '*');
+        var e = answer.slice(length-2);
+        return s+e;
+    };
+
+
+    var runProblem = function(problem_id, callback) {
+        callAjax('/api/problem=' + problem_id, callback);
+    };
+
+
+    var renderProblem = function(json) {
+
+        var $content = $('#content');
         var answerClass;
         var runtimeClass;
         var template;
@@ -51,26 +71,39 @@ var GAUSS = (function() {
 
         template =
             '<li>' +
-                '<span>Problem: ' + json['id'] + '</span><br>' +
+                '<a href="/test=' + json['id'] + '">Problem: ' + json['id'] + '</a><br>' +
                 '<span class="' + answerClass + '">Answer: ' + json['calculated'] + '</span><br>' +
                 '<span class="' + runtimeClass + '">Runtime: ' + json['runtime'] + '</span><br>' +
             '</li>'
 
-        if ($pl.children().length) {
-            $pl.children().last().append(template);
+        if ($content.children().length) {
+            $content.children().last().append(template);
         }
         else {
-            $pl.append(template);
+            $content.append(template);
         }
     };
 
 
-    var runProblem = function(problem_id) {
-        callAjax('/api/problem=' + problem_id, testProblem);
-    };
+    window.onload = (function() {
+        var params = getUrlParameters(); 
+        var problem = params['test'];
 
+        if (problem === 'all') {
+            runProblem(1, renderProblem);
+            runProblem(2, renderProblem);
+            runProblem(3, renderProblem);
+            runProblem(4, renderProblem);
+            runProblem(5, renderProblem);
+            runProblem(6, renderProblem);
+            runProblem(7, renderProblem);
+            runProblem(8, renderProblem);
+            runProblem(9, renderProblem);
+            runProblem(10, renderProblem);
+        }
+        else {
+            runProblem(problem, renderProblem)
+        }
+    })();
 
-    return {
-        runProblem: runProblem
-    }
 })();

@@ -36,11 +36,11 @@ class ProblemHandler(webapp2.RequestHandler):
 
         orm = Orm()
         answers = orm.get_canonical_data()
-        answer = answers[int(problem_id) - 1][1]
+        answer = str(answers[int(problem_id) - 1][1])
 
         mod = importlib.import_module('problems.pe' + str(problem_id))
         fn  = getattr(mod, 'main')
         s = time.time()
-        a = fn()
+        c = str(fn())
         t = '{0:.10f}'.format(time.time() - s)
-        return json.dumps({ 'calculated': a , 'runtime': t, 'id': problem_id, 'correct': answer })
+        return json.dumps({ 'calculated': c, 'runtime': t, 'id': problem_id, 'correct': answer })
