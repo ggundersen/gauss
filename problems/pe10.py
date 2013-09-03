@@ -14,9 +14,8 @@ import lib.gmath as g
 
 
 def main():
-	sum = 0
-	for i in range(1,2000001):
-	    if g.is_prime(i):
-	        sum += i
-	        
-	return sum
+    sum = 2    # begin at 2, then iterate over only odd numbers
+    for i in range(3, 2000001, 2):
+        if g.is_prime(i):
+            sum += i
+    return sum

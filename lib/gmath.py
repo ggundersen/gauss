@@ -7,9 +7,10 @@ helper library for Project Euler. Most of the scripts were written by Gregory
 Gundersen, although many of them are not original.
 
 2013-08-24
-2.0 - Renaming all functions to underscore rather than camel case
-    - Placing non-mathematical functions into gutils library
-1.0 - Initial commit
+2.1.0 - Fixed bug where is_prime(2) returned False rather than True
+2.0.0 - Renaming all functions to underscore rather than camel case
+      - Placing non-mathematical functions into gutils library
+1.0.0 - Initial commit
 ----------------------------------------------------------------------------"""
 
 import time
@@ -38,10 +39,10 @@ def is_odd(n):
 
 def is_prime(n):
 
-    if n < 2 or n % 2 == 0:
-        return False
     if n == 2:
         return True
+    if n < 2 or n % 2 == 0:
+        return False
     maxi = n**0.5
     i = 3
     while i <= maxi:

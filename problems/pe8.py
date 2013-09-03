@@ -14,8 +14,6 @@ import sys
 sys.setrecursionlimit(1500)
 
 
-# Define global variables, rather than re-declaring recursively
-
 NUM = '\
 73167176531330624919225119674426574742355349194934\
 96983520312774506326239578318016984801869478851843\
@@ -41,7 +39,7 @@ NUM = '\
 LST = [int(i) for i in NUM]
 
 
-def partial_sum(index_min, index_max, sum_max):
+def main(index_min=0, index_max=5, sum_max=0):
     
     # base case
     if index_max > len(LST):
@@ -54,7 +52,4 @@ def partial_sum(index_min, index_max, sum_max):
             sum_sub *= i
             if sum_sub > sum_max:
                 sum_max = sum_sub
-        return partial_sum(index_min+1, index_max+1, sum_max)
-
-def main():
-    return partial_sum(0, 5, 0)
+        return main(index_min+1, index_max+1, sum_max)
