@@ -57,4 +57,4 @@ def partial_sum(index_min, index_max, sum_max):
         return partial_sum(index_min+1, index_max+1, sum_max)
 
 def main():
-    partial_sum(0, 5, 0)
+    return partial_sum(0, 5, 0)
