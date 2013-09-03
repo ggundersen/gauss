@@ -71,9 +71,9 @@ var GAUSS = (function() {
 
         template =
             '<li>' +
-                '<a href="/test=' + json['id'] + '">Problem: ' + json['id'] + '</a><br>' +
-                '<span class="' + answerClass + '">Answer: ' + json['calculated'] + '</span><br>' +
-                '<span class="' + runtimeClass + '">Runtime: ' + json['runtime'] + '</span><br>' +
+                '<a href="/test=' + json['id']   + '">Problem: ' + json['id']         + '</a><br>' +
+                '<span class="'   + answerClass  + '">Answer: '  + json['calculated'] + '</span><br>' +
+                '<span class="'   + runtimeClass + '">Runtime: ' + json['runtime']    + '</span><br>' +
             '</li>'
 
         if ($content.children().length) {
