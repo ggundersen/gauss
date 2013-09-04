@@ -36,10 +36,7 @@ class MainPage(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     (r'/', MainPage),
-    (r'/problems', problemsPage.ProblemsPage),
-    (r'/problem=(.*)', templateHandler.TemplateHandler),
     (r'/api/problem=(.*)', problemHandler.ProblemHandler),
-    (r'/test=all', testPage.TestPage),
     (r'/test=(.*)', testHandler.TestHandler),
     (r'/refresh', refreshPage.RefreshPage)
 ], debug=True)

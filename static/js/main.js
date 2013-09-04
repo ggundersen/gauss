@@ -42,6 +42,11 @@ var GAUSS = (function() {
     };
 
 
+    var runGmathFn = function(problem_name, callback) {
+        callAjax('/api/gmath=' + problem_name, callback);
+    };
+
+
     var renderProblem = function(json) {
 
         var $content = $('#content');
@@ -87,9 +92,9 @@ var GAUSS = (function() {
 
     window.onload = (function() {
         var params = getUrlParameters(); 
-        var problem = params['test'];
+        var testParam = params['test'];
 
-        if (problem === 'all') {
+        if (testParam === 'all') {
             runProblem(1, renderProblem);
             runProblem(2, renderProblem);
             runProblem(3, renderProblem);
@@ -101,8 +106,11 @@ var GAUSS = (function() {
             runProblem(9, renderProblem);
             runProblem(10, renderProblem);
         }
+        else if (testParam === 'gmath') {
+            run
+        }
         else {
-            runProblem(problem, renderProblem)
+            runProblem(testParam, renderProblem)
         }
     })();
 
