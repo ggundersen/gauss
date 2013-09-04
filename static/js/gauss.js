@@ -59,7 +59,7 @@ var GAUSS = (function() {
         }
 
         // Check runtime
-        if (json['runtime'] > 60) {
+        if (json['runtime'] > 20) {
             runtimeClass = 'fail';
         }
         else if (json['runtime'] > 10) {

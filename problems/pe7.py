@@ -16,7 +16,7 @@ import lib.gmath as g
 def main():
 
     result = 0
-    gen = g.gen_primes()
+    gen = g.gen_sieve_of_eratosthenes()
     for i in range(10001):
         p = gen.next()
         result = p

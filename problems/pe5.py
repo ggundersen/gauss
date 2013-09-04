@@ -9,6 +9,8 @@ to 10 without any remainder. What is the smallest positive number that is
 evenly divisible by all of the numbers from 1 to 20?
 
 Solution:
+Brute-force. We can iterate over 2520 because the number in question must be 
+divisible by 2520 (which is divisible by 1-10).
 ----------------------------------------------------------------------------"""
 
 
@@ -22,8 +24,8 @@ def divide_n_by_range(n):
 
 def main():
 
-    n = 20
-    i = 10
+    n = 2520
+    i = 2520
     while divide_n_by_range(n) == False:
         n += i
     return n

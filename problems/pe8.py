@@ -10,6 +10,7 @@ Find the greatest product of five consecutive digits in the 1000-digit number.
 Solution:
 ----------------------------------------------------------------------------"""
 
+
 import sys
 sys.setrecursionlimit(1500)
 
@@ -39,8 +40,8 @@ NUM = '\
 LST = [int(i) for i in NUM]
 
 
-def main(index_min=0, index_max=5, sum_max=0):
-    
+def get_partial_sum(index_min, index_max, sum_max):
+
     # base case
     if index_max > len(LST):
         return sum_max
@@ -52,4 +53,7 @@ def main(index_min=0, index_max=5, sum_max=0):
             sum_sub *= i
             if sum_sub > sum_max:
                 sum_max = sum_sub
-        return main(index_min+1, index_max+1, sum_max)
+        return test(index_min+1, index_max+1, sum_max)
+
+def main():
+    return get_partial_sum(0, 5, 0)

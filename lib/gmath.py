@@ -95,7 +95,7 @@ def gen_sieve_of_eratosthenes():
     """
 
     D = {}
-    q = 2    # The running integer that's checked for primeness
+    q = 2   # The running integer that's checked for primeness
 
     while True:
         if q not in D:
@@ -259,18 +259,30 @@ def is_deficient(n):
     return False
 
 
-def is_palindrome(n):
+def is_palindromic_number(n):
 
-    sn = str(n)
-    if len(sn) == 1 or (len(sn) == 2 and sn[0] == sn[1]):
+    s = str(n)
+    length = len(s)
+
+    if len(s) == 1 or (len(s) == 2 and s[0] == s[1]):
         return True
     else:
-        L = len(sn)-1
-        if sn[0] == sn[L]:
-            sn = sn[1:L]
-            return is_palindrome(sn)
+        if s[0] == s[length-1]:
+            s = s[1:length-1]
+            return is_palindromic_number(s)
         else:
             return False
+
+
+"""
+def is_palindrome(n):
+    s = str(n)
+    r = ''.join(reversed(s))
+    if s == r:
+        return True
+    else:
+        return False
+"""
 
 
 def base10_to_baseK(n, k, L=[]):

@@ -9,6 +9,8 @@ from the product of two 2-digit numbers is 9009 = 91 * 99. Find the largest
 palindrome made from the product of two 3-digit numbers.
 
 Solution:
+Brute-force. The computational expense is primarily with the nested for loops.
+We can reduce this search space?
 ----------------------------------------------------------------------------"""
 
 import lib.gmath as g
@@ -19,7 +21,7 @@ def main():
     result = 0
     for i in range(999, 0, -1):
         for j in range(999, 0, -1):
-            if g.is_palindrome(i*j):
+            if g.is_palindromic_number(i*j):
                 temp = i*j
                 print temp
                 if temp > result:

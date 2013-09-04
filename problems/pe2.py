@@ -11,7 +11,7 @@ By considering the terms in the Fibonacci sequence whose values do not exceed
 four million, find the sum of the even-valued terms.
 
 Solution:
-Lazy load Fibonacci numbers, testing if each one is divisible by 2.
+Lazily load Fibonacci numbers and test if each one is divisible by 2.
 ----------------------------------------------------------------------------"""
 
 import lib.gmath as g
