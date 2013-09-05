@@ -89,7 +89,7 @@ var GAUSS = (function() {
 
     var runAllProblems = function() {
         for (var i=1; i<11; i++) {
-            callAjax('/api/problem=' + n, renderProblem);
+            callAjax('/api/problem=' + i, renderProblem);
         }
     };
 
