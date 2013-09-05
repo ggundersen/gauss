@@ -37,16 +37,6 @@ var GAUSS = (function() {
     };
 
 
-    var runProblem = function(problem_id, callback) {
-        callAjax('/api/problem=' + problem_id, callback);
-    };
-
-
-    var runGmathFn = function(problem_name, callback) {
-        callAjax('/api/gmath=' + problem_name, callback);
-    };
-
-
     var renderProblem = function(json) {
 
         var $content = $('#content');
@@ -76,7 +66,7 @@ var GAUSS = (function() {
 
         template =
             '<li>' +
-                '<a href="/test=' + json['id']   + '">Problem: ' + json['id']         + '</a><br>' +
+                '<a href="/test=problem&q=' + json['id']   + '">Problem: ' + json['id']         + '</a><br>' +
                 '<span class="'   + answerClass  + '">Answer: '  + json['calculated'] + '</span><br>' +
                 '<span class="'   + runtimeClass + '">Runtime: ' + json['runtime']    + '</span><br>' +
             '</li>'
@@ -90,28 +80,39 @@ var GAUSS = (function() {
     };
 
 
+    var renderGmath = function(json) {
+        var $content = $('#content');
+        var template = '<div>' + json['calculated'] + '</div>';
+        $content.append(template)
+    };
+
+
+    var runAllProblems = function() {
+        for (var i=1; i<11; i++) {
+            callAjax('/api/problem=' + n, renderProblem);
+        }
+    };
+
+
+    var runAllGmath = function() {
+        callAjax('/api/gmath=is_prime', renderGmath);
+    };
+
+
     window.onload = (function() {
-        var params = getUrlParameters(); 
-        var testParam = params['test'];
+        var params = getUrlParameters();
+        var test = params['test'];
+        var q = params['q'];
 
-        if (testParam === 'all') {
-            runProblem(1, renderProblem);
-            runProblem(2, renderProblem);
-            runProblem(3, renderProblem);
-            runProblem(4, renderProblem);
-            runProblem(5, renderProblem);
-            runProblem(6, renderProblem);
-            runProblem(7, renderProblem);
-            runProblem(8, renderProblem);
-            runProblem(9, renderProblem);
-            runProblem(10, renderProblem);
+        if (test ==='problem' && q === 'all') {
+            runAllProblems();
         }
-        else if (testParam === 'gmath') {
-            run
+        else if (test ==='problem') {
+            callAjax('/api/problem=' + q, renderProblem);
         }
-        else {
-            runProblem(testParam, renderProblem)
-        }
+        else if (test ==='gmath' && q === 'all') {
+            runAllGmath();
+        } 
+        else { }
     })();
-
 })();

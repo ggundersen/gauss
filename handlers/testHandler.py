@@ -8,27 +8,28 @@ from orm.orm import *
 from handlers.problemHandler import *
 
 
-TEMPLATE_PATH = os.path.normpath(os.path.dirname(__file__) + "../.." +
-   os.environ["TEMPLATE_PATH"])
+TEMPLATE_PATH = os.path.normpath(os.path.dirname(__file__) + '../..' +
+   os.environ['TEMPLATE_PATH'])
 JINJA_ENV = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_PATH))
 
 
 class TestHandler(webapp2.RequestHandler):
 
-    def get(self, problem_range):
+    def get(self, suite, q):
 
-        """Render problem template, passing control to JavaScript
-        """
+        if suite == 'problem':
+            self.get_problems(q)
+        elif suite == 'gmath':
+            self.get_gmath(q)
 
-        if problem_range == 'all':
-            orm = Orm()
-            datastore_problems = orm.get_problems()      
-            template_values = {}
-            template = JINJA_ENV.get_template('test.html')
-            self.response.write(template.render(template_values))
 
+    def get_problems(self, q):
+
+        if q == 'all':
+            template = JINJA_ENV.get_template('problems.html')
+            self.response.write(template.render())
         else:
-            problem_id = problem_range
+            problem_id = q
             template_values = {
                 'problem_title': 'Problem ' + str(problem_id),
                 'problem_num': str(problem_id),
@@ -36,3 +37,10 @@ class TestHandler(webapp2.RequestHandler):
             }
             template = JINJA_ENV.get_template('problem.tpl.html')
             self.response.write(template.render(template_values))
+
+
+    def get_gmath(self, q):
+
+        if q == 'all':
+            template = JINJA_ENV.get_template('gmath.html')
+            self.response.write(template.render())
