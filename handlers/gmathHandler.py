@@ -1,26 +1,34 @@
-import jinja2
 import json
+import lib.gmath as g
 import os
 import webapp2
-import lib.gmath
-
-
-TEMPLATE_PATH = os.path.normpath(os.path.dirname(__file__) + '../..' +
-   os.environ['TEMPLATE_PATH'])
-JINJA_ENV = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_PATH))
 
 
 class GmathHandler(webapp2.RequestHandler):
 
-    def get(self, function_name):
+    def get(self, fn):
 
-        jsonOutput = self.run_function(function_name)
-        self.response.write(jsonOutput)
+        #jsonOutput = self.run_function(fn)
+        #self.response.write(jsonOutput)
+
+        if fn == 'get_gcd':
+            jsonOutput = self.test_get_gcd()
+            self.response.write(jsonOutput)
 
 
-    @classmethod
-    def run_function(cls, function_name):
+    def custom_assert(conditional, description):
+        pass
+
+
+    def run_function(self, fn):
         
-        fn  = getattr(lib.gmath, function_name)
+        fn = getattr(lib.gmath, fn)
         c = fn(13)
-        return json.dumps({ 'name': function_name, 'calculated': c })
+        return json.dumps({ 'name': fn, 'calculated': c })
+
+
+    def test_get_gcd(self):
+        asserts = []
+        if g.get_gcd(2, 4) == 2:
+            asserts.append('The greatest common divisor of 2 and 4 is 2')
+        return json.dumps(asserts)

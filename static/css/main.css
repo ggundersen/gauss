@@ -25,7 +25,15 @@ table {
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 13px;
 }
+ul#content {
+	line-height: 16px;
+	padding: 0;
+}
+ul#content li {
+	padding-bottom: 10px;
+}
 li {
+	list-style: square;
 	padding: 2px 0;
 }
 p.top {
@@ -35,28 +43,35 @@ p.bottom {
 	margin-bottom: 40px;
 }
 span.code {
-	font-family: Courier;
-	font-size: 12px;	
+	font-family: Monospace;
+	font-size: 13px;
 }
 span.code.block {
-	border-left: 2px solid #aaa;
+	background: #eee;
 	display: block;
 	margin: 10px 0;
 	padding: 10px 15px;
+}
+span.statement {
+	font-weight: 700;
+	/*color: #00008b;*/
+}
+span.integer {
+	color: #2b91af;
+}
+span.defName {
+	color: #990000;
 }
 span.indention {
 	left: 20px;
 	position: relative;
 }
-#problemList {
-	padding-left: 15px;
-}
 .pass {
-	color: #46b525;
+	color: #2b91af;
 }
 .lowpass {
-	color: #ff9a00;
+	color: #990000;
 }
 .fail {
-	color: red;
+	color: #990000;
 }

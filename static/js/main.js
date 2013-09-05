@@ -64,15 +64,24 @@ var GAUSS = (function() {
             runtimeClass = 'pass';
         }
 
-        template =
-            '<li>' +
-                '<a href="/test=problem&q=' + json['id']   + '">Problem: ' + json['id']         + '</a><br>' +
-                '<span class="'   + answerClass  + '">Answer: '  + json['calculated'] + '</span><br>' +
-                '<span class="'   + runtimeClass + '">Runtime: ' + json['runtime']    + '</span><br>' +
-            '</li>'
+        if (document.title === 'Gauss - Problems Test Suite') {
+            template =
+                '<li>' +
+                    '<a href="/test=problem&q=' + json['id']   + '">Problem ' + json['id']         + '</a><br>' +
+                    '<span class="'   + answerClass  + '">Answer: '  + json['calculated'] + '</span><br>' +
+                    '<span class="'   + runtimeClass + '">Runtime: ' + json['runtime']    + '</span><br>' +
+                '</li>';
+        }
+        else {
+             template =
+                '<li>' +
+                    '<span class="'   + answerClass  + '">Answer: '  + json['calculated'] + '</span><br>' +
+                    '<span class="'   + runtimeClass + '">Runtime: ' + json['runtime']    + '</span><br>' +
+                '</li>';           
+        }
 
         if ($content.children().length) {
-            $content.children().last().append(template);
+            $content.children().last().after(template);
         }
         else {
             $content.append(template);

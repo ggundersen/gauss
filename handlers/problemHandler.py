@@ -15,8 +15,7 @@ class ProblemHandler(webapp2.RequestHandler):
         self.response.write(jsonOutput)
 
 
-    @classmethod
-    def run_problem(cls, problem_id):
+    def run_problem(self, problem_id):
         
         """Return a JSON object with problem data
         """

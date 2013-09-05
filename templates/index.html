@@ -8,34 +8,34 @@
     <h3>Gauss</h3>
     <h4>Intro</h4>
     <p>
-    	Gauss is a web application for testing and analyzing <a href='http://projecteuler.net/'>Project Euler</a> solutions. All calculations are performed at runtime.
+        Gauss is a web application for testing and analyzing <a href='http://projecteuler.net/'>Project Euler</a> solutions. All calculations are performed at runtime.
     </p>
     <p>
         <a href='/test=problem&q=all'>Run</a> the Project Euler test suite.
     </p>
-    <p>
+    <!--<p>
         <a href='/test=gmath&q=all'>Unit test</a> the <span class='code'>gmath</span> library.
-    </p>
+    </p>-->
     <h4>The <span class='code'>gmath</span> library</h4>
     <p>
-        While Project Euler problems are standalone, many of them rely on common mathematical functions. These recurring functions are abstracted away by the <span class='code'><a href='https://github.com/ggundersen/Gauss/blob/master/lib/gmath.py'>gmath</a></span> library, resulting in cross-problem performance gains. For example
+        While Project Euler problems are standalone, many of them rely on common mathematical functions. These recurring functions are abstracted away by the <span class='code'><a href='https://github.com/ggundersen/Gauss/blob/master/lib/gmath.py'>gmath</a></span> library, resulting in cross-problem performance gains. A trivial example:
         <span class='code block'>
-        def factorial(n):<br>
+         <span class='statement'>def</span> <span class='defName'>factorial</span>(n):<br>
             <span class='indention'>
-            if n == 1:<br>
-                <span class='indention'>return 1<br></span>
-            else:<br>
-                <span class='indention'>return n * factorial(n-1)</span>
+             <span class='statement'>if</span> n == <span class='integer'>1</span>:<br>
+                <span class='indention'><span class='statement'>return</span> <span class='integer'>1</span><br></span>
+            <span class='statement'>else</span>:<br>
+                <span class='indention'> <span class='statement'>return</span> n * factorial(n-<span class='integer'>1</span>)</span>
             </span>
         </span>
         was refactored to be
         <span class='code block'>
-            def get_factorial(n):<br>
+            <span class='statement'>def</span> <span class='defName'>get_factorial</span>(n):<br>
             <span class='indention'>
-                facts = [1, 1]<br>
-                for i in range(2, n+1):<br>
-                    <span class='indention'>facts.append(facts[i-1] * i)<br></span>
-                return facts[n]
+                facts = [<span class='integer'>1</span>, <span class='integer'>1</span>]<br>
+                <span class='statement'>for</span> i <span class='statement'>in</span> range(<span class='integer'>2</span>, n+<span class='integer'>1</span>):<br>
+                    <span class='indention'>facts.append(facts[i-<span class='integer'>1</span>] * i)<br></span>
+                <span class='statement'>return</span> facts[n]
             </span>
         </span>
         The latter is orders of magnitude faster for large values of <span class='code'>n</span> and optimized multiple solutions.
