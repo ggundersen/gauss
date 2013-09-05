@@ -31,8 +31,10 @@ ul#content {
 }
 ul#content li {
 	padding-bottom: 10px;
+	display: none;
 }
 li {
+	display: none;
 	list-style: square;
 	padding: 2px 0;
 }
@@ -57,10 +59,10 @@ span.statement {
 	/*color: #00008b;*/
 }
 span.integer {
-	color: #2b91af;
+	color: #c82829;
 }
 span.defName {
-	color: #990000;
+	color: #2b91af;
 }
 span.indention {
 	left: 20px;
@@ -70,8 +72,8 @@ span.indention {
 	color: #2b91af;
 }
 .lowpass {
-	color: #990000;
+	color: #c82829;
 }
 .fail {
-	color: #990000;
+	color: #c82829;
 }

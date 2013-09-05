@@ -15,6 +15,20 @@
 # limitations under the License.
 #
 
+"""----------------------------------------------------------------------------
+Gauss
+Gregory Gundersen
+
+Gauss is a web application for testing, analyzing, and documenting Project
+Euler solutions and associated libraries. All calculations are performed at
+runtime.
+
+2013-09-05
+2.0.0 - Refactored URL-to-handler mapping to be more clear
+      - Stubbed out gmathHandler
+      - Modified main.css for more clear styling of code blocks; added favicon
+1.0.0 - Initial commit
+----------------------------------------------------------------------------"""
 
 import jinja2
 import os

@@ -39,10 +39,11 @@ var GAUSS = (function() {
 
     var renderProblem = function(json) {
 
-        var $content = $('#content');
         var answerClass;
+        var $content = $('#content');
         var runtimeClass;
         var template;
+        var $thisLi;
 
         // Check answer
         if (json['calculated'] !== json['correct']) {
@@ -67,24 +68,27 @@ var GAUSS = (function() {
         if (document.title === 'Gauss - Problems Test Suite') {
             template =
                 '<li>' +
-                    '<a href="/test=problem&q=' + json['id']   + '">Problem ' + json['id']         + '</a><br>' +
-                    '<span class="'   + answerClass  + '">Answer: '  + json['calculated'] + '</span><br>' +
-                    '<span class="'   + runtimeClass + '">Runtime: ' + json['runtime']    + '</span><br>' +
+                    '<a href="/test=problem&q=' + json['id'] + '">Problem ' + json['id'] + '</a><br>' +
+                    '<span class="' + answerClass  + '">Answer: ' + json['calculated'] + '</span><br>' +
+                    '<span class="' + runtimeClass + '">Runtime: ' + json['runtime'] + '</span><br>' +
                 '</li>';
         }
         else {
              template =
                 '<li>' +
-                    '<span class="'   + answerClass  + '">Answer: '  + json['calculated'] + '</span><br>' +
-                    '<span class="'   + runtimeClass + '">Runtime: ' + json['runtime']    + '</span><br>' +
+                    '<span class="' + answerClass + '">Answer: ' + json['calculated'] + '</span><br>' +
+                    '<span class="' + runtimeClass + '">Runtime: ' + json['runtime'] + '</span><br>' +
                 '</li>';           
         }
 
-        if ($content.children().length) {
-            $content.children().last().after(template);
+        if ($content.find('li').length) {
+            $thisLi = $content.find('li').last();
+            $thisLi.last().after(template);
+            $thisLi.show(600);
         }
         else {
             $content.append(template);
+            $content.find('li').first().show(600);
         }
     };
 
