@@ -37,7 +37,7 @@ from handlers import *
 
 
 template_path = os.path.normpath(os.path.dirname(__file__) +\
-    os.environ["TEMPLATE_PATH"])
+    os.environ['TEMPLATE_PATH'])
 JINJA_ENV = jinja2.Environment(loader=jinja2.FileSystemLoader(template_path))
 
 

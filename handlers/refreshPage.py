@@ -7,7 +7,7 @@ from orm.orm import *
 
 
 TEMPLATE_PATH = os.path.normpath(os.path.dirname(__file__) + "../.." +
-   os.environ["TEMPLATE_PATH"])
+   os.environ['TEMPLATE_PATH'])
 JINJA_ENV = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_PATH))
 
 

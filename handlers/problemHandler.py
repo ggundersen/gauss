@@ -31,3 +31,7 @@ class ProblemHandler(webapp2.RequestHandler):
         t = '{0:.10f}'.format(time.time() - s)
 
         return json.dumps({ 'calculated': c, 'runtime': t, 'id': problem_id, 'correct': answer })
+
+
+    def run_problem_block(self, problem_range):
+        pass

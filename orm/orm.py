@@ -41,5 +41,15 @@ class Orm:
             [7, 104743, '10001st prime'],\
             [8, 40824, 'Largest product in a series'],\
             [9, 31875000, 'Special Pythagorean triplet'],\
-            [10, 142913828922, 'Summation of primes']\
+            [10, 142913828922, 'Summation of primes'],\
+            [11, 70600674, 'Largest product in a grid'],\
+            [12, 76576500, 'Highly divisible triangular number'],\
+            [13, 5537376230, 'Large sum'],\
+            [14, 837799, 'Longest Collatz sequence'],\
+            [15, 137846528820, 'Lattice paths'],\
+            [16, 1366, 'Power digit sum'],\
+            [17, 21124, 'Number letter counts'],\
+            [18, 1074, 'Maximum path sum I'],\
+            [19, 171, 'Counting Sundays'],\
+            [20, 648, 'Factorial digit sum']
         ]

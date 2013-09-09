@@ -101,7 +101,7 @@ var GAUSS = (function() {
 
 
     var runAllProblems = function() {
-        for (var i=1; i<11; i++) {
+        for (var i=1; i<13; i++) {
             callAjax('/api/problem=' + i, renderProblem);
         }
     };
