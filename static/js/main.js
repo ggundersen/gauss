@@ -63,6 +63,7 @@ var GAUSS = (function() {
                 template =
                     '<li>' +
                         '<a href="/test=problem&q=' + key + '">Problem ' + key + '</a><br>' +
+                        '<span>Title: ' + obj.title + '</span><br>' +
                         '<span class="' + answerClass  + '">Answer: ' + obj.answer + '</span><br>' +
                         '<span class="' + runtimeClass + '">Runtime: ' + obj.runtime + '</span><br>' +
                     '</li>';
@@ -70,6 +71,7 @@ var GAUSS = (function() {
             else {
                  template =
                     '<li>' +
+                        '<span>Answer: ' + obj.title + '</span><br>' +
                         '<span class="' + answerClass + '">Answer: ' + obj.answer + '</span><br>' +
                         '<span class="' + runtimeClass + '">Runtime: ' + obj.runtime + '</span><br>' +
                     '</li>';           
@@ -91,7 +93,9 @@ var GAUSS = (function() {
     var runAllProblems = function() {
 
         // fast problems
-        callAjax('/api/problems=1,2,5,6,7,11', renderProblems);
+        callAjax('/api/problems=1,2,5', renderProblems);
+        callAjax('/api/problems=6,7,11', renderProblems);
+        callAjax('/api/problems=13,14', renderProblems);
 
         // slow problems
         callAjax('/api/problems=4', renderProblems);
