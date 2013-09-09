@@ -8,9 +8,6 @@ var GAUSS = (function() {
             dataType: 'json',
             success: function(response) {
                 callback(response);
-            },
-            error: function(e) {
-                console.log(e);
             }
         });
     };
@@ -29,90 +26,87 @@ var GAUSS = (function() {
     };
 
 
-    var maskAnswer = function(answer) {
+    var renderProblems = function(json) {
 
-        var s = answer.slice(0, length-2).replace(/[0-9]/g, '*');
-        var e = answer.slice(length-2);
-        return s+e;
-    };
-
-
-    var renderProblem = function(json) {
-
-        var answerClass;
         var $content = $('#content');
+        var answerClass;
+        var i;
+        var key;
+        var keys = Object.keys(json);
+        var obj;
         var runtimeClass;
         var template;
         var $thisLi;
 
-        // Check answer
-        if (json['calculated'] !== json['correct']) {
-            answerClass = 'fail';
-        }
-        else {
-            json['calculated'] = maskAnswer(json['calculated']);
-            answerClass = 'pass';
-        }
+        for (i in keys) {
+            key = keys[i]
+            obj = json[key];
+            if (obj.correct) {
+                answerClass = 'pass';
+            }
+            else {
+                answerClass = 'fail';
+            }
 
-        // Check runtime
-        if (json['runtime'] > 20) {
-            runtimeClass = 'fail';
-        }
-        else if (json['runtime'] > 10) {
-            runtimeClass = 'lowpass';
-        }
-        else {
-            runtimeClass = 'pass';
-        }
+            // Check runtime
+            if (obj.runtime > 20) {
+                runtimeClass = 'fail';
+            }
+            else if (obj.runtime > 10) {
+                runtimeClass = 'lowpass';
+            }
+            else {
+                runtimeClass = 'pass';
+            }
 
-        if (document.title === 'Gauss - Problems Test Suite') {
-            template =
-                '<li>' +
-                    '<a href="/test=problem&q=' + json['id'] + '">Problem ' + json['id'] + '</a><br>' +
-                    '<span class="' + answerClass  + '">Answer: ' + json['calculated'] + '</span><br>' +
-                    '<span class="' + runtimeClass + '">Runtime: ' + json['runtime'] + '</span><br>' +
-                '</li>';
-        }
-        else {
-             template =
-                '<li>' +
-                    '<span class="' + answerClass + '">Answer: ' + json['calculated'] + '</span><br>' +
-                    '<span class="' + runtimeClass + '">Runtime: ' + json['runtime'] + '</span><br>' +
-                '</li>';           
-        }
+            if (document.title === 'Gauss - Problems Test Suite') {
+                template =
+                    '<li>' +
+                        '<a href="/test=problem&q=' + key + '">Problem ' + key + '</a><br>' +
+                        '<span class="' + answerClass  + '">Answer: ' + obj.answer + '</span><br>' +
+                        '<span class="' + runtimeClass + '">Runtime: ' + obj.runtime + '</span><br>' +
+                    '</li>';
+            }
+            else {
+                 template =
+                    '<li>' +
+                        '<span class="' + answerClass + '">Answer: ' + obj.answer + '</span><br>' +
+                        '<span class="' + runtimeClass + '">Runtime: ' + obj.runtime + '</span><br>' +
+                    '</li>';           
+            }
 
-        if ($content.find('li').length) {
-            $thisLi = $content.find('li').last();
-            $thisLi.last().after(template);
-            $thisLi.show(600);
+            if ($content.find('li').length) {
+                $thisLi = $content.find('li').last();
+                $thisLi.last().after(template);
+                $thisLi.show(600);
+            }
+            else {
+                $content.append(template);
+                $content.find('li').first().show(600);
+            }
         }
-        else {
-            $content.append(template);
-            $content.find('li').first().show(600);
-        }
-    };
-
-
-    var renderGmath = function(json) {
-        var $content = $('#content');
-        var template = '<div>' + json['calculated'] + '</div>';
-        $content.append(template)
     };
 
 
     var runAllProblems = function() {
-        for (var i=1; i<13; i++) {
-            callAjax('/api/problem=' + i, renderProblem);
-        }
-    };
 
+        // fast problems
+        callAjax('/api/problems=1,2,5,6,7,11', renderProblems);
 
-    var runAllGmath = function() {
-        callAjax('/api/gmath=is_prime', renderGmath);
+        // slow problems
+        callAjax('/api/problems=4', renderProblems);
+        callAjax('/api/problems=5', renderProblems);
+        callAjax('/api/problems=9', renderProblems);
+        callAjax('/api/problems=10', renderProblems);
+        callAjax('/api/problems=12', renderProblems);
+
+        // broken problems
+        //callAjax('/api/problems=8', renderProblems);
     };
 
 
     window.onload = (function() {
+
         var params = getUrlParameters();
         var test = params['test'];
         var q = params['q'];
@@ -121,11 +115,10 @@ var GAUSS = (function() {
             runAllProblems();
         }
         else if (test ==='problem') {
-            callAjax('/api/problem=' + q, renderProblem);
+            callAjax('/api/problems=' + q, renderProblems);
         }
-        else if (test ==='gmath' && q === 'all') {
-            runAllGmath();
-        } 
-        else { }
+        else {
+            // test === 'gmath' &c.
+        }
     })();
 })();

@@ -9,29 +9,43 @@ from orm.orm import Orm
 
 class ProblemHandler(webapp2.RequestHandler):
 
-    def get(self, problem_id):
+    def get(self, problems):
 
-        jsonOutput = self.run_problem(problem_id)
+        problems = [int(s) for s in problems.split(',')]
+        jsonOutput = self.run_problem_range(problems)
         self.response.write(jsonOutput)
 
 
-    def run_problem(self, problem_id):
-        
-        """Return a JSON object with problem data
-        """
+    def mask_answer(self, answer):
+        return '***' + str(answer)[:3]
 
-        orm = Orm()
-        answers = orm.get_canonical_data()
-        answer = str(answers[int(problem_id) - 1][1])
+
+    def run_problem(self, problem_id, answers):
+        
+        """Return an object with problem data
+        This method is always executed via run_problem_range, which performs
+        the JSON encoding.
+        """
 
         mod = importlib.import_module('problems.pe' + str(problem_id))
         fn  = getattr(mod, 'main')
         s = time.time()
-        c = str(fn())
-        t = '{0:.10f}'.format(time.time() - s)
+        answer = fn()
+        runtime = '{0:.10f}'.format(time.time() - s)
+        correct = True if (answer == answers[problem_id - 1][1]) else False
+        if correct:
+            answer = self.mask_answer(answer)
+        return { 'answer': answer, 'runtime': runtime, 'correct': correct }
 
-        return json.dumps({ 'calculated': c, 'runtime': t, 'id': problem_id, 'correct': answer })
 
+    def run_problem_range(self, problems):
 
-    def run_problem_block(self, problem_range):
-        pass
+        """Return a JSON object with problem objects from run_problem
+        """
+
+        orm = Orm()
+        answers = orm.get_canonical_data()
+        jsonObj = {}
+        for problem_id in problems:
+            jsonObj[problem_id] = self.run_problem(problem_id, answers)
+        return json.dumps(jsonObj)
