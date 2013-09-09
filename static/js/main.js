@@ -1,6 +1,25 @@
 var GAUSS = (function() {
 
 
+    var problemCache = {};
+
+
+    var cacheProblem = function(json) {
+
+        var i;
+        var key;
+        var keys = Object.keys(json);
+        var obj;
+
+        for (i in keys) {
+            key = keys[i]
+            problemCache[key] = json[key];
+        }
+
+        console.log(problemCache);
+    };
+
+
     var callAjax = function(url, callback) {
 
         $.ajax({
@@ -71,7 +90,7 @@ var GAUSS = (function() {
             else {
                  template =
                     '<li>' +
-                        '<span>Answer: ' + obj.title + '</span><br>' +
+                        '<span>Title: ' + obj.title + '</span><br>' +
                         '<span class="' + answerClass + '">Answer: ' + obj.answer + '</span><br>' +
                         '<span class="' + runtimeClass + '">Runtime: ' + obj.runtime + '</span><br>' +
                     '</li>';           
@@ -109,6 +128,13 @@ var GAUSS = (function() {
     };
 
 
+    var cacheAllProblems = function() {
+
+        // fast problems
+        callAjax('/api/problems=1,2,5', cacheProblem);
+    };
+
+
     window.onload = (function() {
 
         var params = getUrlParameters();
@@ -125,4 +151,24 @@ var GAUSS = (function() {
             // test === 'gmath' &c.
         }
     })();
+
+
+    /*window.onload = (function() {
+
+        cacheAllProblems();
+
+        var params = getUrlParameters();
+        var test = params['test'];
+        var q = params['q'];
+        if (test ==='problem' && q === 'all') {
+            while (true) {    // loop forever, check the cache, render problem and remove from cache if complete
+                if (problemCache) {
+                    for (i in problemCache) {
+                        renderProblems(problemCache[i]);
+                        delete problemCache[i];
+                    }
+                }
+            }
+        }
+    })();*/
 })();
