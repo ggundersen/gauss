@@ -1,5 +1,11 @@
-'''
-By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
+"""----------------------------------------------------------------------------
+Project Euler
+Gregory Gundersen
+2013-01
+
+Problem:
+By starting at the top of the triangle below and moving to adjacent numbers on
+the row below, the maximum total from top to bottom is 23.
 
 3
 7 4
@@ -26,34 +32,38 @@ Find the maximum total from top to bottom of the triangle below:
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
 
-NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route.
-However, Problem 67, is the same challenge with a triangle containing one-hundred rows;
-it cannot be solved by brute force, and requires a clever method! ;o)
-'''
+NOTE: As there are only 16384 routes, it is possible to solve this problem by
+trying every route. However, Problem 67, is the same challenge with a triangle
+containing one-hundred rows; it cannot be solved by brute force, and requires
+a clever method! ;o)
+----------------------------------------------------------------------------"""
 
-import time
-s = time.time()
+import os
 
-''' Ingest and process data '''
-with open('PE18_triangle.txt') as f: tempTri = f.read().splitlines()
-f.close()
-tri = [row.split(' ') for row in tempTri]
-for row in tri: row[:] = map(int, row[:])
 
-''' update second-to-last nodes '''
-def updateNodes(tri):
+def update_nodes(tri):
+
     L = len(tri)-1
     for node in range(len(tri[L-1])):
         tri[L-1][node] = max(tri[L-1][node] + tri[L][node], tri[L-1][node] + tri[L][node + 1])
     return tri
 
-''' truncate triangle '''
-def updateTriangle(tri):
+
+def truncate_triangle(tri):
+
     return tri[:len(tri)-1]
 
-for row in range(len(tri)-1):
-    updateNodes(tri)
-    tri = updateTriangle(tri)
 
-print tri
-print 'Time: ' + str(time.time() - s)
+def main():
+
+	# build nested array to represent triangle
+    path = os.path.normpath(os.path.dirname(__file__) + '../../txt/pe18_triangle.txt')
+    with open(path) as f:
+    	temp_tri = f.read().splitlines()
+    f.close()
+    tri = [row.split(' ') for row in temp_tri]
+    for row in tri: row[:] = map(int, row[:])
+
+    for row in range(len(tri)-1):
+        tri = truncate_triangle(update_nodes(tri))
+    return tri[0][0]

@@ -205,7 +205,7 @@ def get_fibonacci(n):
     elif n == 1:
         return 1
     else:
-        return getFibonacci(n-1) + getFibonacci(n-2)
+        return get_fibonacci(n-1) + get_fibonacci(n-2)
 
 
 def gen_fibonacci():
@@ -218,7 +218,10 @@ def gen_fibonacci():
 
 def get_figurate(n, M):
 
-    return (factorial(M+n-1) / factorial(M-1)) / factorial(n)
+    """
+    """
+
+    return (get_factorial(M+n-1) / get_factorial(M-1)) / get_factorial(n)
 
 
 def get_proper_divisors(n):

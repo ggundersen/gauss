@@ -106,9 +106,10 @@ var GAUSS = (function() {
     var run_all_problems = function() {
 
         // fast problems
-        get_JSON('/api/problems=1,2,5', render_problems);
-        get_JSON('/api/problems=6,7,11', render_problems);
-        get_JSON('/api/problems=13,14', render_problems);
+        get_JSON('/api/problems=1,2,5,6', render_problems);
+        get_JSON('/api/problems=7,11,13,14', render_problems);
+        get_JSON('/api/problems=14,15,16,17', render_problems);
+        get_JSON('/api/problems=18,19,20', render_problems);
 
         // slow problems
         get_JSON('/api/problems=4', render_problems);
