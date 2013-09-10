@@ -1,38 +1,21 @@
 var GAUSS = (function() {
 
 
-    var problemCache = {};
+    var get = function(url, callback) {
 
-
-    var cacheProblem = function(json) {
-
-        var i;
-        var key;
-        var keys = Object.keys(json);
-        var obj;
-
-        for (i in keys) {
-            key = keys[i]
-            problemCache[key] = json[key];
-        }
-
-        console.log(problemCache);
-    };
-
-
-    var callAjax = function(url, callback) {
-
-        $.ajax({
-            url: url,
-            dataType: 'json',
-            success: function(response) {
-                callback(response);
+        var request = new XMLHttpRequest();
+        request.open('GET', url);
+        request.onreadystatechange = function() {
+            if (request.readyState = 4 && request.status === 200) {
+                var type = request.getResponseHeader('Content-Type');
+                callback(JSON.parse(request.responseText));
             }
-        });
+        };
+        request.send(null);
     };
 
 
-    var getUrlParameters = function() {
+    var get_url_parameters = function() {
 
         var params = {};
         var qs = window.location.pathname.replace(/\//, '');
@@ -45,37 +28,37 @@ var GAUSS = (function() {
     };
 
 
-    var renderProblems = function(json) {
+    var render_problems = function(json) {
 
         var $content = $('#content');
-        var answerClass;
+        //var content = document.getElementById('content');
+        //var li; // = content.getElementsByTagName('li');
+        var answer_class;
         var i;
         var key;
         var keys = Object.keys(json);
         var obj;
-        var runtimeClass;
+        var runtime_class;
         var template;
         var $thisLi;
+        //var thisLi;
 
         for (i in keys) {
             key = keys[i]
             obj = json[key];
             if (obj.correct) {
-                answerClass = 'pass';
-            }
-            else {
-                answerClass = 'fail';
+                answer_class = 'pass';
+            } else {
+                answer_class = 'fail';
             }
 
             // Check runtime
             if (obj.runtime > 20) {
-                runtimeClass = 'fail';
-            }
-            else if (obj.runtime > 10) {
-                runtimeClass = 'lowpass';
-            }
-            else {
-                runtimeClass = 'pass';
+                runtime_class = 'fail';
+            } else if (obj.runtime > 10) {
+                runtime_class = 'lowpass';
+            } else {
+                runtime_class = 'pass';
             }
 
             if (document.title === 'Gauss - Problems Test Suite') {
@@ -83,18 +66,36 @@ var GAUSS = (function() {
                     '<li>' +
                         '<a href="/test=problem&q=' + key + '">Problem ' + key + '</a><br>' +
                         '<span>Title: ' + obj.title + '</span><br>' +
-                        '<span class="' + answerClass  + '">Answer: ' + obj.answer + '</span><br>' +
-                        '<span class="' + runtimeClass + '">Runtime: ' + obj.runtime + '</span><br>' +
+                        '<span class="' + answer_class  + '">Answer: ' + obj.answer + '</span><br>' +
+                        '<span class="' + runtime_class + '">Runtime: ' + obj.runtime + '</span><br>' +
                     '</li>';
-            }
-            else {
+            } else {
                  template =
                     '<li>' +
                         '<span>Title: ' + obj.title + '</span><br>' +
-                        '<span class="' + answerClass + '">Answer: ' + obj.answer + '</span><br>' +
-                        '<span class="' + runtimeClass + '">Runtime: ' + obj.runtime + '</span><br>' +
+                        '<span class="' + answer_class + '">Answer: ' + obj.answer + '</span><br>' +
+                        '<span class="' + runtime_class + '">Runtime: ' + obj.runtime + '</span><br>' +
                     '</li>';           
             }
+
+            /*try {
+                li = content.getElementsByTagName('li');
+            } catch(e) {
+                content.appendChild(template);
+                //console.log(e);
+            }*/
+
+            /*if (li.length) { 
+                thisLi = li[li.length - 1];
+                thisLi.appendChild(template);
+                //$thisLi.last().after(template);
+                //$thisLi.show(600);
+            }
+            else {
+                content.appendChild(template);
+                //thisLi = li[0];
+                //$content.find('li').first().show(600);
+            }*/
 
             if ($content.find('li').length) {
                 $thisLi = $content.find('li').last();
@@ -109,66 +110,39 @@ var GAUSS = (function() {
     };
 
 
-    var runAllProblems = function() {
+    var run_all_problems = function() {
 
         // fast problems
-        callAjax('/api/problems=1,2,5', renderProblems);
-        callAjax('/api/problems=6,7,11', renderProblems);
-        callAjax('/api/problems=13,14', renderProblems);
+        get('/api/problems=1,2,5', render_problems);
+        get('/api/problems=6,7,11', render_problems);
+        get('/api/problems=13,14', render_problems);
 
         // slow problems
-        callAjax('/api/problems=4', renderProblems);
-        callAjax('/api/problems=5', renderProblems);
-        callAjax('/api/problems=9', renderProblems);
-        callAjax('/api/problems=10', renderProblems);
-        callAjax('/api/problems=12', renderProblems);
+        get('/api/problems=4', render_problems);
+        get('/api/problems=5', render_problems);
+        get('/api/problems=9', render_problems);
+        get('/api/problems=10', render_problems);
+        get('/api/problems=12', render_problems);
 
         // broken problems
-        //callAjax('/api/problems=8', renderProblems);
-    };
-
-
-    var cacheAllProblems = function() {
-
-        // fast problems
-        callAjax('/api/problems=1,2,5', cacheProblem);
+        //get('/api/problems=8', render_problems);
     };
 
 
     window.onload = (function() {
 
-        var params = getUrlParameters();
+        var params = get_url_parameters();
         var test = params['test'];
         var q = params['q'];
 
         if (test ==='problem' && q === 'all') {
-            runAllProblems();
+            run_all_problems();
         }
         else if (test ==='problem') {
-            callAjax('/api/problems=' + q, renderProblems);
+            get('/api/problems=' + q, render_problems);
         }
         else {
             // test === 'gmath' &c.
         }
     })();
-
-
-    /*window.onload = (function() {
-
-        cacheAllProblems();
-
-        var params = getUrlParameters();
-        var test = params['test'];
-        var q = params['q'];
-        if (test ==='problem' && q === 'all') {
-            while (true) {    // loop forever, check the cache, render problem and remove from cache if complete
-                if (problemCache) {
-                    for (i in problemCache) {
-                        renderProblems(problemCache[i]);
-                        delete problemCache[i];
-                    }
-                }
-            }
-        }
-    })();*/
 })();
