@@ -41,6 +41,4 @@ class TestHandler(webapp2.RequestHandler):
 
     def get_gmath(self, q):
 
-        if q == 'all':
-            template = JINJA_ENV.get_template('gmath.html')
-            self.response.write(template.render())
+        pass

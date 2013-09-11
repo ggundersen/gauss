@@ -30,11 +30,6 @@ ul#content {
 	padding: 0;
 }
 ul#content li {
-	padding-bottom: 10px;
-	display: none;
-}
-li {
-	display: none;
 	list-style: square;
 	padding: 2px 0;
 }
@@ -56,7 +51,6 @@ span.code.block {
 }
 span.statement {
 	font-weight: 700;
-	/*color: #00008b;*/
 }
 span.integer {
 	color: #c82829;
@@ -71,9 +65,19 @@ span.indention {
 .pass {
 	color: #2b91af;
 }
-.lowpass {
-	color: #c82829;
-}
 .fail {
 	color: #c82829;
+}
+#content,
+#progress {
+	position: relative;
+	top: 20px;
+}
+#progress,
+#progress div {
+	height: 3px;
+}
+#progress div {
+	border-left: 1px solid #aaa;
+	float: left;
 }
