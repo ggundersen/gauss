@@ -3,16 +3,15 @@
 
     var build_template = function(key, obj) {
         
-        var answer_class, has_passed, runtime_class,
+        var answer_class = obj.correct ? 'pass' : 'fail',
             anchor = document.createElement('a'),
             answer = document.createElement('div'),
+            has_passed = answer_class === 'pass' ? true : false,
             href = '/test=problem&q=' + key,
             runtime = document.createElement('div'),
+            runtime_class = (obj.runtime < 1) ? 'pass' : 'fail',
             template = document.createElement('li'),
             title = document.createElement('div');
-
-        answer_class = obj.correct ? 'pass' : 'fail';
-        runtime_class = (obj.runtime < 10) ? 'pass' : 'fail';
 
         anchor.innerHTML = 'Problem ' + key;
         anchor.setAttribute('href', href);
@@ -21,10 +20,8 @@
         answer.className = answer_class;
         runtime.innerHTML = 'Runtime: ' + obj.runtime;
         runtime.className = runtime_class;
-
-        has_passed = answer_class === 'pass' ? true : false;
         
-        if (document.title === 'Gauss - Problems Test Suite') {
+        if (document.title === 'Gauss - Test Suite') {    // TODO : This seems fragile
             template.appendChild(anchor);
             template.appendChild(title);
             template.appendChild(answer);
@@ -52,14 +49,6 @@
             div = document.createElement('div');
             div.id = 'div' + i;
             div.style.width = div_width;
-            
-            div.onmouseover = function() {
-                var span = document.createElement('span');
-                span.className = 'barData';
-                console.log(this);
-                this.appendChild(span);
-            };
-
             progress.appendChild(div);
         }
     };
