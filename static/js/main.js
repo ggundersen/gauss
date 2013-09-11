@@ -107,21 +107,21 @@
 
     var run_all_problems = function() {
 
-        // fast problems
-        get_JSON('/api/problems=1,2,5', render_problems);
-        get_JSON('/api/problems=6,7,11', render_problems);
-        get_JSON('/api/problems=13,14,15', render_problems);
-        get_JSON('/api/problems=16,17,18', render_problems);
-        get_JSON('/api/problems=19,20', render_problems);
-
-        // slow problems
-        get_JSON('/api/problems=4', render_problems);
-        get_JSON('/api/problems=9', render_problems);
-        get_JSON('/api/problems=10', render_problems);
-        get_JSON('/api/problems=12', render_problems);
-
-        // broken problems
-        //get_JSON('/api/problems=8', render_problems);
+        var i,
+            queries = [
+                '/api/problems=1,2,5',
+                '/api/problems=6,7,11',
+                '/api/problems=13,14,15',
+                '/api/problems=16,17,18',
+                '/api/problems=19,20',
+                '/api/problems=4',
+                '/api/problems=9',
+                '/api/problems=10',
+                '/api/problems=12',
+            ];
+        for (i in queries) {
+            get_JSON(queries[i], render_problems);
+        }
     };
 
 
