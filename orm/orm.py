@@ -51,5 +51,15 @@ class Orm:
             [17, 21124, 'Number letter counts'],\
             [18, 1074, 'Maximum path sum I'],\
             [19, 171, 'Counting Sundays'],\
-            [20, 648, 'Factorial digit sum']
+            [20, 648, 'Factorial digit sum'],\
+            [21, 31626, 'Amicable numbers'],\
+            [22, 871198282, 'Names scores'],\
+            [23, 4179871, 'Non-abundant sums'],\
+            [24, 2783915460, 'Lexicographic permutations'],\
+            [25, 4782, '1000-digit Fibonacci number'],\
+            [26, 983, 'Reciprocal cycles'],\
+            [27, -59231, 'Quadratic primes'],\
+            [28, 669171001, 'Number spiral diagonals'],\
+            [29, 9183, 'Distinct powers'],\
+            [30, 443839, 'Digit fifth powers']
         ]

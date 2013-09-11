@@ -41,7 +41,7 @@
 
         var div,
             DOCUMENT_WIDTH = 400,
-            TOTAL_PROBLEMS = 20,
+            TOTAL_PROBLEMS = 24,
             progress = document.getElementById('progress'),
             div_width = Math.floor(DOCUMENT_WIDTH / TOTAL_PROBLEMS - 1) + 'px';
 
@@ -113,7 +113,9 @@
                 '/api/problems=6,7,11',
                 '/api/problems=13,14,15',
                 '/api/problems=16,17,18',
-                '/api/problems=19,20',
+                '/api/problems=19,20,21',
+                // where is 22?
+                '/api/problems=23,24,25',
                 '/api/problems=4',
                 '/api/problems=9',
                 '/api/problems=10',
