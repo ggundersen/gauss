@@ -1,11 +1,7 @@
 import itertools
 import jinja2
 import os
-import problems
 import webapp2
-from google.appengine.ext import ndb
-from orm.orm import *
-from handlers.problemHandler import *
 
 
 TEMPLATE_PATH = os.path.normpath(os.path.dirname(__file__) + '../..' +
@@ -37,8 +33,3 @@ class TestHandler(webapp2.RequestHandler):
             }
             template = JINJA_ENV.get_template('problem.tpl.html')
             self.response.write(template.render(template_values))
-
-
-    def get_gmath(self, q):
-
-        pass

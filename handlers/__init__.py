@@ -1,6 +1,6 @@
 __all__ = [\
+   'adminPage',
    'gmathHandler',
    'problemHandler',
-   'refreshPage',
    'testHandler'
 ]

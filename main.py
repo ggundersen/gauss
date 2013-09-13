@@ -54,7 +54,6 @@ app = webapp2.WSGIApplication([
     (r'/', MainPage),
     (r'/api/problems=(.*)', problemHandler.ProblemHandler),
     (r'/api/problem&s=(.*)&e=(.*)', problemHandler.ProblemHandler),
-    #(r'/api/gmath=(.*)', gmathHandler.GmathHandler),
     (r'/test=(.*)&q=(.*)', testHandler.TestHandler),
-    (r'/refresh', refreshPage.RefreshPage)
+    (r'/admin', adminPage.AdminPage)
 ], debug=True)

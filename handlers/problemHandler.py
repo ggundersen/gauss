@@ -1,10 +1,11 @@
 import importlib
 import json
-import pkgutil
-import problems
 import time
 import webapp2
-from orm.orm import Orm
+from odb.odb import Odb
+
+
+DB_DATA = Odb().get_canonical_data()
 
 
 class ProblemHandler(webapp2.RequestHandler):
@@ -20,7 +21,7 @@ class ProblemHandler(webapp2.RequestHandler):
         return '***' + str(answer)[:3]
 
 
-    def run_problem(self, problem_id, orm_data):
+    def run_problem(self, problem_id):
         
         """Return an object with problem data
         This method is always executed via run_problem_range, which performs
@@ -32,10 +33,10 @@ class ProblemHandler(webapp2.RequestHandler):
         s = time.time()
         answer = fn()
         runtime = '{0:.10f}'.format(time.time() - s)
-        correct = True if (answer == orm_data[problem_id - 1][1]) else False
+        correct = True if (answer == DB_DATA[problem_id - 1][1]) else False
         if correct:
             answer = self.mask_answer(answer)
-        return { 'answer': answer, 'runtime': runtime, 'correct': correct, 'title' : orm_data[problem_id - 1][2] }
+        return { 'answer': answer, 'runtime': runtime, 'correct': correct, 'title' : DB_DATA[problem_id - 1][2] }
 
 
     def run_problem_range(self, problems):
@@ -43,9 +44,7 @@ class ProblemHandler(webapp2.RequestHandler):
         """Return a JSON object with problem objects from run_problem
         """
 
-        orm = Orm()
-        orm_data = orm.get_canonical_data()
         jsonObj = {}
         for problem_id in problems:
-            jsonObj[problem_id] = self.run_problem(problem_id, orm_data)
+            jsonObj[problem_id] = self.run_problem(problem_id)
         return json.dumps(jsonObj)
