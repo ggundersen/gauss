@@ -130,6 +130,13 @@ def get_prime_factors(n):
     return prime_factors
 
 
+def is_prime_quadratic(n, a, b):
+    
+    if is_prime(n**2 + a*n + b):
+        return True
+    return False
+
+
 def gen_triangle_numbers():
 
     tri, inc = 1, 1

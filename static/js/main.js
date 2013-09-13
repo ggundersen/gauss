@@ -41,7 +41,7 @@
 
         var div,
             DOCUMENT_WIDTH = 400,
-            TOTAL_PROBLEMS = 24,
+            TOTAL_PROBLEMS = 28,
             progress = document.getElementById('progress'),
             div_width = Math.floor(DOCUMENT_WIDTH / TOTAL_PROBLEMS - 1) + 'px';
 
@@ -87,7 +87,6 @@
             keys = Object.keys(json),
             content = document.getElementById('content');
 
-
         for (i in keys) {
             key = keys[i];
             obj = json[key];
@@ -116,6 +115,8 @@
                 '/api/problems=19,20,21',
                 // where is 22?
                 '/api/problems=23,24,25',
+                '/api/problems=26,27,28',
+                '/api/problems=29,30',
                 '/api/problems=4',
                 '/api/problems=9',
                 '/api/problems=10',
