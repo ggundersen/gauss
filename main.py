@@ -15,22 +15,6 @@
 # limitations under the License.
 #
 
-"""----------------------------------------------------------------------------
-Gauss
-Gregory Gundersen
-
-Gauss is a web application for testing, analyzing, and documenting Project
-Euler solutions and associated libraries. All calculations are performed at
-runtime.
-
-2013-09-10
-2.1 - Refactored out jQuery library
-    - Added progress bar on problem test suite
-2.0 - Refactored URL-to-handler mapping to be more clear
-    - Stubbed out gmathHandler
-    - Modified main.css for more clear styling of code blocks; added favicon
-1.0 - Initial commit
-----------------------------------------------------------------------------"""
 
 import jinja2
 import os
@@ -55,5 +39,5 @@ app = webapp2.WSGIApplication([
     (r'/api/problems=(.*)', problemHandler.ProblemHandler),
     (r'/api/problem&s=(.*)&e=(.*)', problemHandler.ProblemHandler),
     (r'/test=(.*)&q=(.*)', testHandler.TestHandler),
-    (r'/admin', adminPage.AdminPage)
+    (r'/admin&pass=(.*)', adminPage.AdminPage)
 ], debug=True)

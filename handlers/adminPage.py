@@ -12,10 +12,13 @@ JINJA_ENV = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_PATH))
 
 class AdminPage(webapp2.RequestHandler):
 
-    def get(self):
+    def get(self, password):
 
-        problem_tuples = Odb().get_canonical_data()
 
-        template_values = {'problems': problem_tuples}
-        template = JINJA_ENV.get_template('refresh.html')
-        self.response.write(template.render(template_values))
+        if password == 'leonhard':
+            problem_tuples = Odb().get_canonical_data()
+            template_values = {'problems': problem_tuples}
+            template = JINJA_ENV.get_template('admin.html')
+            self.response.write(template.render(template_values))
+        else:
+            self.response.write('')

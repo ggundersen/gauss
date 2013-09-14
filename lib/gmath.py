@@ -1,4 +1,4 @@
-"""----------------------------------------------------------------------------
+'''----------------------------------------------------------------------------
 gmath
 Gregory Gundersen
 
@@ -11,7 +11,7 @@ Gundersen, although many of them are not original.
 2.0.0 - Renaming all functions to underscore rather than camel case
       - Placing non-mathematical functions into gutils library
 1.0.0 - Initial commit
-----------------------------------------------------------------------------"""
+----------------------------------------------------------------------------'''
 
 import time
 import gutils as u
@@ -19,9 +19,9 @@ import gutils as u
 
 def get_gcd(a, b):
 
-    """Euclidean algorithm
+    '''Euclidean algorithm
     The power of this algorithm is that we do not have to factor.
-    """
+    '''
 
     while a:
         t = a
@@ -54,10 +54,10 @@ def is_prime(n):
 
 def is_circular_prime(p):
 
-    """A circular prime is a prime with the property that each number generated
+    '''A circular prime is a prime with the property that each number generated
     at each intermediate step when cyclically permuting its (base 10) digits is
     prime.
-    """
+    '''
 
     if not is_prime(p) or has_even_digit(p):
         return False
@@ -70,8 +70,8 @@ def is_circular_prime(p):
 
 def gen_primes(p=2):
 
-    """Return a generator for prime numbers, beginning at prime p
-    """
+    '''Return a generator for prime numbers, beginning at prime p
+    '''
 
     primes = [2]
     n = 1
@@ -89,10 +89,10 @@ def gen_primes(p=2):
 
 def gen_sieve_of_eratosthenes():
 
-    """Code by David Eppstein, UC Irvine, 28 Feb 2002
+    '''Code by David Eppstein, UC Irvine, 28 Feb 2002
     Maps composites to primes witnessing their compositeness.
     This is memory efficient, as the sieve is not 'run forward'
-    """
+    '''
 
     D = {}
     q = 2   # The running integer that's checked for primeness
@@ -196,8 +196,8 @@ def get_factorial(n):
 
 def factorial(n):
     
-    """Classic but highly inefficient recursive function
-    """
+    '''Classic but highly inefficient recursive function
+    '''
     
     if n == 1:
         return 1
@@ -224,9 +224,6 @@ def gen_fibonacci():
 
 
 def get_figurate(n, M):
-
-    """
-    """
 
     return (get_factorial(M+n-1) / get_factorial(M-1)) / get_factorial(n)
 
@@ -284,7 +281,7 @@ def is_palindromic_number(n):
             return False
 
 
-"""
+'''
 def is_palindrome(n):
     s = str(n)
     r = ''.join(reversed(s))
@@ -292,13 +289,13 @@ def is_palindrome(n):
         return True
     else:
         return False
-"""
+'''
 
 
 def base10_to_baseK(n, k, L=[]):
 
-    """Converts a number n from base-10 to base-k
-    """
+    '''Converts a number n from base-10 to base-k
+    '''
 
     if n == 0:
         L.reverse()
@@ -312,10 +309,10 @@ def base10_to_baseK(n, k, L=[]):
 
 def is_pandigital(n):
 
-    """A pandigital number is an integer that in a given base has among its
+    '''A pandigital number is an integer that in a given base has among its
     significant digits each digit used in the base at least once. This function
     assumes base 10.
-    """
+    '''
 
     L = map(str, range(1, len(str(n))+1))
     for d in str(n):
@@ -358,9 +355,9 @@ def is_pythagorean_triplet(a, b, c):
 
 def get_pythagorean_triples(p):
 
-    """General logic:
+    '''General logic:
     a+b > c ==> a+b+c > 2c ==> if 2c=p < limit, p/2 < limit
-    """
+    '''
 
     ps = []
     if p % 2 != 0:
@@ -375,8 +372,8 @@ def get_pythagorean_triples(p):
 
 def get_multiplicative_order(b, n):
     
-    """This function should be improved to always return a meaningful result
-    e.g. It falls into an infinite loop for b = 10, n = 2 """
+    '''This function should be improved to always return a meaningful result
+    e.g. It falls into an infinite loop for b = 10, n = 2 '''
 
     k = 1
     while (b ** k) % n != 1:

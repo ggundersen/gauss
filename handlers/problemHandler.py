@@ -7,7 +7,6 @@ from odb.odb import Odb
 
 DB_DATA = Odb().get_canonical_data()
 
-
 class ProblemHandler(webapp2.RequestHandler):
 
     def get(self, problems):
@@ -18,6 +17,7 @@ class ProblemHandler(webapp2.RequestHandler):
 
 
     def mask_answer(self, answer):
+
         return '***' + str(answer)[:3]
 
 
@@ -29,13 +29,12 @@ class ProblemHandler(webapp2.RequestHandler):
         """
 
         mod = importlib.import_module('problems.pe' + str(problem_id))
-        fn  = getattr(mod, 'main')
+        func  = getattr(mod, 'main')
         s = time.time()
-        answer = fn()
+        answer = func()
         runtime = '{0:.10f}'.format(time.time() - s)
         correct = True if (answer == DB_DATA[problem_id - 1][1]) else False
-        if correct:
-            answer = self.mask_answer(answer)
+        answer = self.mask_answer(answer) if correct else answer
         return { 'answer': answer, 'runtime': runtime, 'correct': correct, 'title' : DB_DATA[problem_id - 1][2] }
 
 

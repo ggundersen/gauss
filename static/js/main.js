@@ -1,15 +1,28 @@
 (function() {
 
 
+    var LOW_PASS = 10,
+        SOLVED_PROBLEMS = [
+        1,2,3,4,5,6,7,9,10,
+        11,12,13,14,15,16,17,18,19,20,
+        21,
+        //22,
+        23,24,25,26,27,28,29,30,
+        //40,41,42,43,45,46,47,48,49,50,
+        //52,
+        //62,67
+    ];
+
+
     var build_template = function(key, obj) {
         
         var answer_class = obj.correct ? 'pass' : 'fail',
+            runtime_class = (obj.runtime < LOW_PASS) ? 'pass' : 'fail',
+            has_passed = (answer_class === 'pass' && runtime_class === 'pass') ? true : false,
+            href = '/test=problem&q=' + key,
             anchor = document.createElement('a'),
             answer = document.createElement('div'),
-            has_passed = answer_class === 'pass' ? true : false,
-            href = '/test=problem&q=' + key,
             runtime = document.createElement('div'),
-            runtime_class = (obj.runtime < 1) ? 'pass' : 'fail',
             template = document.createElement('li'),
             title = document.createElement('div');
 
@@ -26,7 +39,7 @@
             template.appendChild(title);
             template.appendChild(answer);
             template.appendChild(runtime);
-            render_progress_bar(key, has_passed);
+            render_progress_bar(key, has_passed, false);
         } else {
             template.appendChild(title);
             template.appendChild(answer);
@@ -39,16 +52,16 @@
 
     var init_progress_bar = function() {
 
-        var div,
+        var div, i,
             DOCUMENT_WIDTH = 400,
-            TOTAL_PROBLEMS = 28,
-            progress = document.getElementById('progress'),
-            div_width = Math.floor(DOCUMENT_WIDTH / TOTAL_PROBLEMS - 1) + 'px';
+            DIV_WIDTH = '19px',
+            progress = document.getElementById('progress');
 
-        for (var i=1; i<TOTAL_PROBLEMS+1; i++) {
+        for (i in SOLVED_PROBLEMS) {
             div = document.createElement('div');
-            div.id = 'div' + i;
-            div.style.width = div_width;
+            div.className = 'bar';
+            div.id = 'div' + SOLVED_PROBLEMS[i];
+            div.style.width = DIV_WIDTH;
             progress.appendChild(div);
         }
     };
@@ -56,24 +69,36 @@
 
     var get_JSON = function(url, callback) {
 
-        var request = new XMLHttpRequest();
-        request.open('GET', url);
+        var i, problems,
+            request = new XMLHttpRequest();
+        
+        request.timeout = 60000;
         request.onreadystatechange = function() {
             if (request.readyState === 4 && request.status === 200) {
                 callback(JSON.parse(request.responseText));
             }
         };
+        // assume 505 error caused by GAE timing out Python script
+        request.ontimeout = function() {
+            problems = url.match(/problems=(.*)/)[1].split(',');
+            for (i in problems) {
+                console.log(problems[i]);
+                render_progress_bar(problems[i], false, true);
+            }
+        };
+        request.open('GET', url);
         request.send();
     };
 
 
     var get_url_parameters = function() {
 
-        var params = {},
+        var i,
+            params = {},
             qs = window.location.pathname.replace(/\//, ''),
             pairs = qs.split('&');
 
-        for (var i=0; i<pairs.length; i++) {
+        for (i in pairs) {
             var kv = pairs[i].split('=');
             params[kv[0]] = kv[1];
         }
@@ -83,7 +108,7 @@
 
     var render_problems = function(json) {
 
-        var answer_class, has_passed, i, key, obj, template, thisLi,
+        var i, key, obj, template, 
             keys = Object.keys(json),
             content = document.getElementById('content');
 
@@ -96,10 +121,10 @@
     };
 
 
-    var render_progress_bar = function(key, has_passed) {
+    var render_progress_bar = function(key, has_passed, has_timedout) {
 
         var div = document.getElementById('div' + key);
-        div.style.background = has_passed ? '#2b91af' : '#c82829';
+        div.style.background = has_timedout ? '#000000' : (has_passed ? '#2b91af' : '#c82829');
         div.style['border-left'] = '1px solid #fff';
     };
 
@@ -117,6 +142,7 @@
                 '/api/problems=23,24,25',
                 '/api/problems=26,27,28',
                 '/api/problems=29,30',
+                '/api/problems=3',
                 '/api/problems=4',
                 '/api/problems=9',
                 '/api/problems=10',

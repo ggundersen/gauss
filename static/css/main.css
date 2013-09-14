@@ -25,59 +25,92 @@ table {
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 13px;
 }
-ul#content {
+#content {
 	line-height: 16px;
 	padding: 0;
 }
-ul#content li {
+#content li {
 	list-style: square;
 	padding: 8px 0;
 }
-p.top {
+.top {
 	margin-top: 40px;
 }
-p.bottom {
+.bottom {
 	margin-bottom: 40px;
 }
-span.code {
+.code {
 	font-family: Monospace;
 	font-size: 13px;
 }
-span.code.block {
+.code.block {
 	background: #eee;
 	display: block;
 	margin: 10px 0;
 	padding: 10px 15px;
 }
-span.statement {
+.statement {
 	font-weight: 700;
 }
-span.integer {
+.integer {
 	color: #c82829;
 }
-span.defName {
+.defName {
 	color: #2b91af;
 }
-span.indention {
+.indention {
 	left: 20px;
 	position: relative;
 }
-.pass {
-	color: #2b91af;
-}
-.fail {
-	color: #c82829;
-}
-#content,
-#progress {
+#legend,
+#progress,
+#content {
 	position: relative;
-	top: 20px;
+	padding-top: 20px;
+}
+#legend {
+	padding-left: 0;
+}
+#legend li {
+	list-style: none;
+}
+#legend div {
+	height: 3px;
+	margin-top: 6px;
+	margin-right: 10px;
+	width: 20px;
+}
+#legend li div,
+#legend li div span {
+	float: left;
+}
+#legend .pass {
+	background: #2b91af;
+}
+#legend .fail {
+	background: #c82829;
+}
+#legend .timeout {
+	background: #000000;
 }
 #progress,
-#progress div {
+#progress .bar {
 	height: 3px;
 }
-#progress div {
+#progress .bar {
 	border-left: 1px solid #aaa;
 	float: left;
+}
+.bar {
+	float: left;
+	margin-bottom: 1px;
+}
+#content .pass {
+	color: #2b91af;
+}
+#content .fail {
+	color: #c82829;
+}
+#adminTable td {
+	padding-right: 15px;
 }

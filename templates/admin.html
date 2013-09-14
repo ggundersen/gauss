@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'/>
+    <title>Datastore Refresher</title>
+    <link href='/css/main.css' rel='stylesheet' type='text/css'/>
+    <script src='/js/main.js'></script>  
+</head>
+<body>
+    <h3>Datastore Refresher</h3>
+    <table id='adminTable'>
+
+    {% for problem in problems %}
+      <tr><td class='first'>{{ problem[0] }}</td><td>{{ problem[1] }}</td><td>{{ problem[2] }}</td></tr>
+    {% endfor %}
+
+    </table>
+</body>
+</html>
