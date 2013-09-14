@@ -1,7 +1,7 @@
 Gauss
 =====
-Gregory Gundersen
-2013-09-14
+- Gregory Gundersen
+- 2013-09-14
 
 Gauss is a web application for testing, analyzing, and documenting Project
 Euler solutions and associated libraries. All calculations are performed at
