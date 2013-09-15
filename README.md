@@ -6,9 +6,8 @@ Gregory Gundersen
 
 Intro
 -----
-Gauss is a web application for testing, analyzing, and documenting Project
-Euler solutions and associated libraries. All calculations are performed at
-runtime.
+Gauss is a web application for testing, analyzing, and documenting Project Euler solutions and associated libraries. All calculations are performed at runtime.
+
 
 Version log
 -----------
@@ -18,5 +17,10 @@ Version log
 - 0.1 - Refactored URL-to-handler mapping to be more clear; stubbed out gmathHandler; modified main.css for more clear styling of code blocks; added favicon
 - 0.0 - Initial commit
 
-### TODO
+
+TODO
+-----------
+- Unit test gmath library
+- Render problems in numerical rather than runtime order
+- Document gmath library
 - Do not check answer based on index of odb.get_canonical_data()
