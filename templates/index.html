@@ -10,7 +10,7 @@
     <h3>Gauss</h3>
     <h4>Intro</h4>
     <p>
-        Gauss is a web application for testing, optimizing, and documenting <a href='http://projecteuler.net/'>Project Euler</a> solutions and the utility library, <span class='code'><a href='https://github.com/ggundersen/Gauss/blob/master/lib/gmath.py'>gmath</a></span>.
+        Gauss is a web application for testing, optimizing, and documenting <a href='http://projecteuler.net/'>Project Euler</a> solutions and the utility module, <span class='code'><a href='https://github.com/ggundersen/Gauss/blob/master/lib/gmath.py'>gmath</a></span>.
     </p>
     <p>
         For each problem, Gauss runs and times the algorithm, validates the answer, and renders the JSON response. Correct answers are masked and requests that break Project Euler's "one-minte rule" are killed.
@@ -67,9 +67,9 @@
             }
         </span>
     </p>
-    <h4>The <span class='code'>gmath</span> library</h4>
+    <h4>The <span class='code'>gmath</span> module</h4>
     <p>
-        While Project Euler problems are standalone, many of them rely on common mathematical functions. These recurring functions are abstracted away by the <span class='code'>gmath</span> library, resulting in cross-problem performance gains. For example:
+        While Project Euler problems are standalone, many of them rely on common mathematical functions. These recurring functions are abstracted away by the <span class='code'>gmath</span> module, resulting in cross-problem performance gains. For example:
         <span class='code block'>
          <span class='statement'>def</span> <span class='defName'>factorial</span>(n):<br>
             <span class='ind'>
@@ -91,11 +91,14 @@
         </span>
         The latter is orders of magnitude faster for large values of <span class='code'>n</span> and optimized multiple solutions.
     </p>
+    <p>
+        No solution relies on Python's built-in <span class='code'><a href='http://docs.python.org/2/library/math.html' target='_blank'>math</a> module</span>.
+    </p>
     <h4>&c.</h4>
     	Gauss is being developed on the Google App Engine platform. The application uses JavaScript, jinja2, Python, and webapp2.
     </p>
     <p class='top'>
-        <span class='code'>2013-09-15 : <a href='http://www.gregorygundersen.com'>gwg</a></span>
+        <span class='code'>2013-09-15 : <a href='http://www.gregorygundersen.com' target='_blank'>gwg</a></span>
     </p>
 </body>
 </html>
