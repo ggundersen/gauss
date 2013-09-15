@@ -33,9 +33,9 @@ class ProblemHandler(webapp2.RequestHandler):
         func  = getattr(mod, 'main')
         s = time.time()
         answer = func()
-        runtime = '{0:.10f}'.format(time.time() - s)
+        runtime = float ( '{0:.10f}'.format(time.time() - s) )
         correct = True if (answer == DB_DATA[problem_id - 1][1]) else False
-        #answer = self.mask_answer(answer) if correct else answer
+        answer = self.mask_answer(answer) if correct else answer
         return { 'answer': answer, 'runtime': runtime, 'correct': correct, 'title' : DB_DATA[problem_id - 1][2] }
 
 

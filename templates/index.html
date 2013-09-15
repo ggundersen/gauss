@@ -10,40 +10,95 @@
     <h3>Gauss</h3>
     <h4>Intro</h4>
     <p>
-        Gauss is a web application for testing, analyzing, and documenting <a href='http://projecteuler.net/'>Project Euler</a> solutions and associated libraries. All calculations are performed at runtime.
+        Gauss is a web application for testing, analyzing, and documenting <a href='http://projecteuler.net/'>Project Euler</a> solutions and the utility library, <span class='code'>gmath</span>.
     </p>
     <p>
-        <a href='/test=problem&q=all'>Run the test suite</a>.
+        For each problem, Gauss runs and times the algorithm, validates the answer, and renders the JSON response. Correct answers are masked, and Project Euler's "one-minute rule" is conveniently reinforced by Google App Engine, which kills any request that takes longer than 60 seconds.
+    </p>
+    <p>
+        <a href='/test=problem&q=all'>Test suite</a>
+    </p>
+    <h4>The API</h4>
+    <p>
+        Gauss offers an API in which problem data can be queried in groups. This allows fast problems to be executed together, avoiding blocking from slower problems and minimizing delays due to Internet speeds.
+    </p>
+    <p>
+        For example:
+
+        <span class='code block'>/api/problems=1,2,5</span>
+
+        will return the following JSON object (runtimes vary):
+        <span class='code block'>
+            {<br>
+            <span class='ind'>
+                "1":<br>
+                    <span class='ind'>
+                    {<br>
+                        <span class='ind'>
+                            "answer": "***233",<br>
+                            "runtime": <span class='integer'>0.0008301735</span>,<br>
+                            "correct": <span class='statement'>true</span>,<br>
+                            "title": "Multiples of 3 and 5"
+                        </span><br>
+                    },</span>
+                <br>
+                "2":<br>
+                    <span class='ind'>
+                    {<br>
+                        <span class='ind'>
+                            "answer": "***461",<br>
+                            "runtime": <span class='integer'>0.0002098083</span>,<br>
+                            "correct": <span class='statement'>true</span>,<br>
+                            "title": "Even Fibonacci numbers"
+                        </span><br>
+                    },</span>
+                <br>
+                "5":<br>
+                    <span class='ind'>
+                    {<br>
+                        <span class='ind'>
+                            "answer": "***232",<br>
+                            "runtime": <span class='integer'>0.9690299034</span>,<br>
+                            "correct": <span class='statement'>true</span>,<br>
+                            "title": "Smallest multiple"
+                        </span><br>
+                    },</span><br>
+                </span>
+            }
+        </span>
     </p>
     <h4>The <span class='code'>gmath</span> library</h4>
     <p>
-        While Project Euler problems are standalone, many of them rely on common mathematical functions. These recurring functions are abstracted away by the <span class='code'><a href='https://github.com/ggundersen/Gauss/blob/master/lib/gmath.py'>gmath</a></span> library, resulting in cross-problem performance gains. A trivial example:
+        While Project Euler problems are standalone, many of them rely on common mathematical functions. These recurring functions are abstracted away by the <span class='code'>gmath</span> library, resulting in cross-problem performance gains. For example:
         <span class='code block'>
          <span class='statement'>def</span> <span class='defName'>factorial</span>(n):<br>
-            <span class='indention'>
+            <span class='ind'>
              <span class='statement'>if</span> n == <span class='integer'>1</span>:<br>
-                <span class='indention'><span class='statement'>return</span> <span class='integer'>1</span><br></span>
+                <span class='ind'><span class='statement'>return</span> <span class='integer'>1</span><br></span>
             <span class='statement'>else</span>:<br>
-                <span class='indention'> <span class='statement'>return</span> n * factorial(n-<span class='integer'>1</span>)</span>
+                <span class='ind'> <span class='statement'>return</span> n * factorial(n-<span class='integer'>1</span>)</span>
             </span>
         </span>
         was refactored to be
         <span class='code block'>
             <span class='statement'>def</span> <span class='defName'>get_factorial</span>(n):<br>
-            <span class='indention'>
+            <span class='ind'>
                 facts = [<span class='integer'>1</span>, <span class='integer'>1</span>]<br>
                 <span class='statement'>for</span> i <span class='statement'>in</span> range(<span class='integer'>2</span>, n+<span class='integer'>1</span>):<br>
-                    <span class='indention'>facts.append(facts[i-<span class='integer'>1</span>] * i)<br></span>
+                    <span class='ind'>facts.append(facts[i-<span class='integer'>1</span>] * i)<br></span>
                 <span class='statement'>return</span> facts[n]
             </span>
         </span>
         The latter is orders of magnitude faster for large values of <span class='code'>n</span> and optimized multiple solutions.
     </p>
+    <p>
+        <span class='code'><a href='https://github.com/ggundersen/Gauss/blob/master/lib/gmath.py'>gmath</a></span>
+    </p>
     <h4>&c.</h4>
     	Gauss is being developed on the Google App Engine platform. The application uses JavaScript, jinja2, Python, and webapp2.
     </p>
     <p class='top'>
-        <span class='code'>2013-09-10 : <a href='http://www.gregorygundersen.com'>gwg</a></span>
+        <span class='code'>2013-09-15 : <a href='http://www.gregorygundersen.com'>gwg</a></span>
     </p>
 </body>
 </html>

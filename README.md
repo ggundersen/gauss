@@ -22,5 +22,6 @@ TODO
 - Unit test gmath library
 - Build pages to display gmath test suite and individual tests
 - Render problems in numerical rather than runtime order
+- Add 'fadeIn' functionality for rendering problems
 - Document gmath library
 - Do not check answer based on index of odb.get_canonical_data()
