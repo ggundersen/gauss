@@ -10,13 +10,13 @@
     <h3>Gauss</h3>
     <h4>Intro</h4>
     <p>
-        Gauss is a web application for testing, analyzing, and documenting <a href='http://projecteuler.net/'>Project Euler</a> solutions and the utility library, <span class='code'>gmath</span>.
+        Gauss is a web application for testing, optimizing, and documenting <a href='http://projecteuler.net/'>Project Euler</a> solutions and the utility library, <span class='code'><a href='https://github.com/ggundersen/Gauss/blob/master/lib/gmath.py'>gmath</a></span>.
     </p>
     <p>
-        For each problem, Gauss runs and times the algorithm, validates the answer, and renders the JSON response. Correct answers are masked, and Project Euler's "one-minute rule" is conveniently reinforced by Google App Engine, which kills any request that takes longer than 60 seconds.
+        For each problem, Gauss runs and times the algorithm, validates the answer, and renders the JSON response. Correct answers are masked and requests that break Project Euler's "one-minte rule" are killed.
     </p>
     <p>
-        <a href='/test=problem&q=all'>Test suite</a>
+        Run the <a href='/test=problem&q=all'>test suite</a>
     </p>
     <h4>The API</h4>
     <p>
@@ -90,9 +90,6 @@
             </span>
         </span>
         The latter is orders of magnitude faster for large values of <span class='code'>n</span> and optimized multiple solutions.
-    </p>
-    <p>
-        <span class='code'><a href='https://github.com/ggundersen/Gauss/blob/master/lib/gmath.py'>gmath</a></span>
     </p>
     <h4>&c.</h4>
     	Gauss is being developed on the Google App Engine platform. The application uses JavaScript, jinja2, Python, and webapp2.
