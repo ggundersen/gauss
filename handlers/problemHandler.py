@@ -7,6 +7,7 @@ from odb.odb import Odb
 
 DB_DATA = Odb().get_canonical_data()
 
+
 class ProblemHandler(webapp2.RequestHandler):
 
     def get(self, problems):
@@ -34,7 +35,7 @@ class ProblemHandler(webapp2.RequestHandler):
         answer = func()
         runtime = '{0:.10f}'.format(time.time() - s)
         correct = True if (answer == DB_DATA[problem_id - 1][1]) else False
-        answer = self.mask_answer(answer) if correct else answer
+        #answer = self.mask_answer(answer) if correct else answer
         return { 'answer': answer, 'runtime': runtime, 'correct': correct, 'title' : DB_DATA[problem_id - 1][2] }
 
 

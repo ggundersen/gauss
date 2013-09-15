@@ -47,13 +47,28 @@ class Odb:
             [41, 7652413, 'Pandigital prime'],\
             [42, 162, 'Coded triangle numbers'],\
             [43, 16695334890, 'Sub-string divisibility'],\
+            [44, '', ''],\
             [45, 1533776805, 'Triangular, pentagonal, and hexagonal'],\
             [46, 5777, 'Goldbach\'s other conjecture'],\
             [47, 134043, 'Distinct primes factors'],\
             [48, 9110846700, 'Self powers'],\
             [49, 296962999629, 'Prime permutations'],\
             [50, 997651, 'Consecutive prime sum'],\
+            [51, '', ''],\
             [52, 142857, 'Permuted multiples'],\
+            [53, '', ''],\
+            [54, '', ''],\
+            [55, '', ''],\
+            [56, '', ''],\
+            [57, '', ''],\
+            [58, '', ''],\
+            [59, '', ''],\
+            [60, '', ''],\
+            [61, '', ''],\
             [62, 127035954683, 'Cubic permutations'],\
+            [63, '', ''],\
+            [64, '', ''],\
+            [65, '', ''],\
+            [66, '', ''],\
             [67, 7273, 'Maximum path sum II']
         ]

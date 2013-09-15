@@ -137,6 +137,17 @@ def is_prime_quadratic(n, a, b):
     return False
 
 
+def is_goldbach(n):
+
+    gen = gen_sieve_of_eratosthenes()
+    for i in range(n):
+        p = gen.next()
+        for i in range(n):
+            if n == (p + 2*(i**2)):
+                return True
+    return False
+
+
 def gen_triangle_numbers():
 
     tri, inc = 1, 1
@@ -292,6 +303,15 @@ def is_palindrome(n):
 '''
 
 
+def sum_digits(n):
+
+    result = 0
+    while n:
+        result += n % 10
+        n /= 10
+    return result
+
+
 def base10_to_baseK(n, k, L=[]):
 
     '''Converts a number n from base-10 to base-k
@@ -365,7 +385,7 @@ def get_pythagorean_triples(p):
     for a in range(1, int(p/2)):
         for b in range(a, int(p/2)):
             c = (a**2 + b**2)**0.5
-            if a+b+c == p and is_pythagorean_triple([a,b,c]):
+            if a+b+c == p and is_pythagorean_triplet(a,b,c):
                 ps.append([a,b,c])
     return ps
 
@@ -379,3 +399,56 @@ def get_multiplicative_order(b, n):
     while (b ** k) % n != 1:
         k += 1
     return k
+
+
+def is_permutation(n, m):
+
+    return sorted(str(n)) == sorted(str(m))
+
+
+def has_even_digit(n):
+
+    """Returns True if any digit is even
+    """
+
+    if n == 0:
+        return True
+    while n:
+        if n % 2 == 0:
+            return True
+        n /= 10
+    return False
+
+
+def rotate_digits(n):
+
+    L = list(str(n))
+    f = L[0]
+    for i in range(0, len(str(n))-1):
+        L[i] = L[i+1]
+    L[-1] = f
+    return int(''.join(L))
+
+
+def get_alphabet_value_char(char):
+
+    """Return the base-1 index of a character
+    """
+
+    alphabet_values = {
+        'a':1, 'b':2, 'c':3, 'd':4, 'e':5, 'f':6, 'g':7, 'h':8, 'i':9, 'j':10,
+        'k':11, 'l':12, 'm':13, 'n':14, 'o':15, 'p':16, 'q':17, 'r':18, 's':19,
+        't':20, 'u':21, 'v':22, 'w':23, 'x':24, 'y':25, 'z':26
+    }
+    return alphabet_values[char.lower()]
+
+
+def get_alphabet_value_word(word):
+
+    """Return the sum of every character in a string's base-1 index value
+    """
+
+    result = 0
+    for char in word:
+        result += get_alphabet_value_char(char)
+    return result

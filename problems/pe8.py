@@ -53,7 +53,7 @@ def get_partial_sum(index_min, index_max, sum_max):
             sum_sub *= i
             if sum_sub > sum_max:
                 sum_max = sum_sub
-        return test(index_min+1, index_max+1, sum_max)
+        return get_partial_sum(index_min+1, index_max+1, sum_max)
 
 def main():
     return get_partial_sum(0, 5, 0)

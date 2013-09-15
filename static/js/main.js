@@ -1,16 +1,16 @@
 (function() {
 
 
-    var LOW_PASS = 10,
+    var LOW_PASS = 30, // seconds
+        TIMEOUT = 60000, // milliseconds
         SOLVED_PROBLEMS = [
-        1,2,3,4,5,6,7,9,10,
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
         11,12,13,14,15,16,17,18,19,20,
-        21,
-        //22,
-        23,24,25,26,27,28,29,30,
-        //40,41,42,43,45,46,47,48,49,50,
-        //52,
-        //62,67
+        21,   23,24,25,26,27,28,29,30,
+        31,32,33,34,35,36,37,38,39,40,
+        41,42,43,   45,46,47,48,49,50,
+           52,
+           62,            67
     ];
 
 
@@ -72,7 +72,7 @@
         var i, problems,
             request = new XMLHttpRequest();
         
-        request.timeout = 60000;
+        request.timeout = TIMEOUT;
         request.onreadystatechange = function() {
             if (request.readyState === 4 && request.status === 200) {
                 callback(JSON.parse(request.responseText));
@@ -132,24 +132,27 @@
     var run_all_problems = function() {
 
         var i,
+            api = '/api/problems='
             queries = [
-                '/api/problems=1,2,5',
-                '/api/problems=6,7,11',
-                '/api/problems=13,14,15',
-                '/api/problems=16,17,18',
-                '/api/problems=19,20,21',
-                // where is 22?
-                '/api/problems=23,24,25',
-                '/api/problems=26,27,28',
-                '/api/problems=29,30',
-                '/api/problems=3',
-                '/api/problems=4',
-                '/api/problems=9',
-                '/api/problems=10',
-                '/api/problems=12',
+                // fast problems
+                '1,2,5',
+                '6,7,8,11',
+                '13,14,15',
+                '16,17,18',
+                '19,20,21',
+                '23,24,25',
+                '26,27,28',
+                '29,30,31',
+                '32,33,36',
+                '38,40,41',
+                '42,43,45',
+                '48,49,50',
+                '52,62,67',
+                // slow problems
+                '3','4','9','10','12','34','35','37','39','46','47'
             ];
         for (i in queries) {
-            get_JSON(queries[i], render_problems);
+            get_JSON(api + queries[i], render_problems);
         }
     };
 

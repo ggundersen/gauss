@@ -1,12 +1,13 @@
-'''
-DESCRIPTION:
-Project Euler, problem 43
-Gregory Gundersen, ../../2013
+"""----------------------------------------------------------------------------
+Project Euler
+Gregory Gundersen
+2013-02
 
-PROBLEM:
-The number, 1406357289, is a 0 to 9 pandigital number because it is made up of each of the digits 0 to 9 in some order,
-but it also has a rather interesting sub-string divisibility property. Let d_1 be the 1st digit, d_2 be the 2nd digit, and so on.
-In this way, we note the following:
+Problem:
+The number, 1406357289, is a 0 to 9 pandigital number because it is made up of
+each of the digits 0 to 9 in some order, but it also has a rather interesting
+sub-string divisibility property. Let d_1 be the 1st digit, d_2 be the 2nd
+digit, and so on. In this way, we note the following:
 
 d_2 * d_3 * d_4  =406 is divisible by 2
 d_3 * d_4 * d_5  =063 is divisible by 3
@@ -18,7 +19,7 @@ d_8 * d_9 * d_10 =289 is divisible by 17
 
 Find the sum of all 0 to 9 pandigital numbers with this property.
 
-SOLUTION:
+Solution:
 Construct the solution backwards
 The number has to equal 45
 
@@ -29,21 +30,18 @@ The number has to equal 45
 11 - begins at 110 - k11
 13 - begins at 104 - k13
 17 - begins at 102 - k17
+----------------------------------------------------------------------------"""
 
-16695334890
-'''
-
-import time
-
-k2, k3, k5, k7, k11, k13, k17 = [], [], [] ,[] ,[] ,[], []
 
 def k_append(k, n):
+
     if len(set(str(n))) == 3:
         k.append(str(n))
     if len(str(n)) == 2 and len(set(str(n))) == 2:
         k.append('0' + str(n))
 
 def add_missing_digit(sn):
+
     digits = '0123456789'
     for d in digits:
         if d not in sn:
@@ -51,6 +49,7 @@ def add_missing_digit(sn):
 
 def main():
 
+    k2, k3, k5, k7, k11, k13, k17 = [], [], [] ,[] ,[] ,[], []
     for i in range(2, 999, 2):
         k_append(k2, i)
     for i in range(3, 999, 3):
@@ -84,9 +83,4 @@ def main():
                                                         if len(sn) == len(set(sn)):
                                                             n = add_missing_digit(sn)
                                                             results[n] = n
-
     return sum(results)
-
-s = time.time()
-print main()
-print 'Time: ' + str(time.time() - s)
