@@ -1,8 +1,6 @@
 Gauss
 =====
-Gregory Gundersen
-
-2013-09-14
+Gregory Gundersen / 2013-09-15
 
 Intro
 -----
@@ -11,6 +9,7 @@ Gauss is a web application for testing, analyzing, and documenting Project Euler
 
 Version log
 -----------
+- 1.0 - 2013-09-15 - Gauss, v1.0
 - 0.4 - Set timeout on XMLHttpRequest, so that the user always receives progress bar feedback; added progress bar legend
 - 0.3 - Refactored out datastore (data is now stored in single Python array); removed any stubbed functionality for gmath unit testing; this will be built for the 2.0 release
 - 0.2 - Refactored out jQuery library; added progress bar on problem test suite
@@ -21,6 +20,7 @@ Version log
 TODO
 -----------
 - Unit test gmath library
+- Build pages to display gmath test suite and individual tests
 - Render problems in numerical rather than runtime order
 - Document gmath library
 - Do not check answer based on index of odb.get_canonical_data()
