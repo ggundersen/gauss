@@ -132,9 +132,7 @@ def get_prime_factors(n):
 
 def is_prime_quadratic(n, a, b):
     
-    if is_prime(n**2 + a*n + b):
-        return True
-    return False
+    return is_prime(n**2 + a*n + b):
 
 
 def is_goldbach(n):
