@@ -6,7 +6,8 @@ gmath a library of useful mathematical functions. The library was written as a
 helper library for Project Euler. Most of the scripts were written by Gregory
 Gundersen, although many of them are not original.
 
-2013-08-24
+2013-09-15
+2.1.1 - Optimized is_prime_quadratic(n,b,c) to return is_prime(n**2 + a*n + b)
 2.1.0 - Fixed bug where is_prime(2) returned False rather than True
 2.0.0 - Renaming all functions to underscore rather than camel case
       - Placing non-mathematical functions into gutils library
